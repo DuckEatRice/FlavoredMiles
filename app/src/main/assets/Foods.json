@@ -1,0 +1,152 @@
+[
+  {
+    "MealName": "Margherita Pizza",
+    "MealPicture": "margherita_pizza.jpg",
+    "MealDescription": "A classic Italian pizza topped with tomatoes, fresh mozzarella cheese, basil leaves, and a drizzle of olive oil. Baked to perfection in a wood-fired oven, this Margherita pizza is simple yet bursting with flavor.",
+    "MealType": "Pizza",
+    "MealRating": "4.8",
+    "MealTime": "25 minutes",
+    "MealCalories": "300 calories",
+    "MealIngredients": "Dough, tomatoes, fresh mozzarella cheese, basil, olive oil"
+  },
+  {
+    "MealName": "BBQ Chicken Burger",
+    "MealPicture": "bbq_chicken_burger.jpg",
+    "MealDescription": "Grilled chicken patty smothered in tangy BBQ sauce, topped with crispy bacon, melted cheddar cheese, lettuce, and tomato, all sandwiched between toasted sesame seed buns. This BBQ chicken burger is a delicious twist on a classic favorite.",
+    "MealType": "Burger",
+    "MealRating": "4.5",
+    "MealTime": "30 minutes",
+    "MealCalories": "450 calories",
+    "MealIngredients": "Chicken breast, BBQ sauce, bacon, cheddar cheese, lettuce, tomato, sesame seed buns"
+  },
+  {
+    "MealName": "Classic Cheeseburger",
+    "MealPicture": "classic_cheeseburger.jpg",
+    "MealDescription": "Juicy beef patty grilled to perfection, topped with melted American cheese, crisp lettuce, slices of ripe tomato, tangy pickles, and creamy mayonnaise, all nestled between soft, toasted burger buns. This classic cheeseburger is sure to satisfy any burger craving.",
+    "MealType": "Burger",
+    "MealRating": "4.7",
+    "MealTime": "20 minutes",
+    "MealCalories": "500 calories",
+    "MealIngredients": "Beef patty, American cheese, lettuce, tomato, pickles, mayonnaise, burger buns"
+  },
+  {
+    "MealName": "Supreme Pizza",
+    "MealPicture": "supreme_pizza.jpg",
+    "MealDescription": "Loaded with savory toppings including pepperoni, Italian sausage, green bell peppers, onions, black olives, and mushrooms, this Supreme pizza is a flavor explosion in every bite. Baked to perfection, it's a crowd-pleaser for any pizza lover.",
+    "MealType": "Pizza",
+    "MealRating": "4.9",
+    "MealTime": "35 minutes",
+    "MealCalories": "400 calories",
+    "MealIngredients": "Dough, pepperoni, Italian sausage, bell peppers, onions, olives, mushrooms"
+  },
+  {
+    "MealName": "Classic Hot Dog",
+    "MealPicture": "classic_hot_dog.jpg",
+    "MealDescription": "A plump and juicy beef hot dog nestled in a soft, warm bun, topped with mustard, ketchup, diced onions, and tangy relish. This classic hot dog is a timeless favorite, perfect for a quick and satisfying meal.",
+    "MealType": "Hot Dog",
+    "MealRating": "4.6",
+    "MealTime": "15 minutes",
+    "MealCalories": "350 calories",
+    "MealIngredients": "Beef hot dog, hot dog buns, mustard, ketchup, onions, relish"
+  },
+  {
+    "MealName": "Vegetarian Pizza",
+    "MealPicture": "vegetarian_pizza.jpg",
+    "MealDescription": "A colorful medley of fresh vegetables including bell peppers, onions, mushrooms, black olives, and tomatoes, all piled onto a bed of marinara sauce and gooey mozzarella cheese atop a crispy crust. This vegetarian pizza is both nutritious and delicious.",
+    "MealType": "Pizza",
+    "MealRating": "4.7",
+    "MealTime": "30 minutes",
+    "MealCalories": "320 calories",
+    "MealIngredients": "Dough, bell peppers, onions, mushrooms, olives, tomatoes, marinara sauce, mozzarella cheese"
+  },
+  {
+    "MealName": "Chicken Caesar Salad",
+    "MealPicture": "chicken_caesar_salad.jpg",
+    "MealDescription": "Crisp romaine lettuce tossed in creamy Caesar dressing, topped with grilled chicken breast, crunchy croutons, and a sprinkle of Parmesan cheese. This Chicken Caesar Salad is a light and refreshing option packed with flavor.",
+    "MealType": "Salad",
+    "MealRating": "4.5",
+    "MealTime": "15 minutes",
+    "MealCalories": "250 calories",
+    "MealIngredients": "Romaine lettuce, grilled chicken breast, Caesar dressing, croutons, Parmesan cheese"
+  },
+  {
+    "MealName": "Pepperoni Pizza",
+    "MealPicture": "pepperoni_pizza.jpg",
+    "MealDescription": "A classic favorite featuring a generous layer of spicy pepperoni atop a blanket of gooey mozzarella cheese and zesty marinara sauce, all baked to perfection on a golden crust. This Pepperoni pizza is a crowd-pleaser for any occasion.",
+    "MealType": "Pizza",
+    "MealRating": "4.8",
+    "MealTime": "25 minutes",
+    "MealCalories": "380 calories",
+    "MealIngredients": "Dough, pepperoni, mozzarella cheese, marinara sauce"
+  },
+  {
+    "MealName": "Lemonade",
+    "MealPicture": "lemonade.jpg",
+    "MealDescription": "A refreshing citrus beverage made with freshly squeezed lemons, pure cane sugar, and chilled water. Perfect for quenching your thirst on a hot summer day.",
+    "MealType": "Beverage",
+    "MealRating": "5.0",
+    "MealTime": "5 minutes",
+    "MealCalories": "100",
+    "MealIngredients": "Fresh lemons, cane sugar, water"
+  },
+  {
+    "MealName": "Iced Tea",
+    "MealPicture": "iced_tea.jpg",
+    "MealDescription": "A classic thirst-quencher made by steeping tea leaves in cold water and served over ice. Customize with lemon slices or sweeten with sugar syrup.",
+    "MealType": "Beverage",
+    "MealRating": "4.7",
+    "MealTime": "10 minutes",
+    "MealCalories": "20",
+    "MealIngredients": "Tea leaves, water, ice, lemon (optional), sugar (optional)"
+  },
+  {
+    "MealName": "Mint Mojito",
+    "MealPicture": "mint_mojito.jpg",
+    "MealDescription": "A refreshing cocktail made with white rum, muddled mint leaves, lime juice, and a splash of soda water. Garnish with fresh mint sprigs and lime wedges for a burst of flavor.",
+    "MealType": "Beverage",
+    "MealRating": "4.8",
+    "MealTime": "5 minutes",
+    "MealCalories": "150",
+    "MealIngredients": "White rum, mint leaves, lime, soda water, sugar, ice"
+  },
+  {
+    "MealName": "Hot Chocolate",
+    "MealPicture": "hot_chocolate.jpg",
+    "MealDescription": "A cozy and indulgent drink made with rich cocoa powder, steamed milk, and a dollop of whipped cream. Perfect for warming up on a cold winter's day.",
+    "MealType": "Beverage",
+    "MealRating": "4.6",
+    "MealTime": "10 minutes",
+    "MealCalories": "200",
+    "MealIngredients": "Cocoa powder, milk, sugar, whipped cream"
+  },
+  {
+    "MealName": "Cucumber Mint Cooler",
+    "MealPicture": "cucumber_mint_cooler.jpg",
+    "MealDescription": "A refreshing non-alcoholic beverage made with fresh cucumber, mint leaves, lime juice, and sparkling water. Serve over ice for a crisp and revitalizing drink.",
+    "MealType": "Beverage",
+    "MealRating": "4.5",
+    "MealTime": "5 minutes",
+    "MealCalories": "50",
+    "MealIngredients": "Cucumber, mint leaves, lime, sparkling water, ice"
+  },
+  {
+    "MealName": "Chocolate Lava Cake",
+    "MealPicture": "chocolate_lava_cake.jpg",
+    "MealDescription": "Indulge in the ultimate chocolate lover's treat with our decadent chocolate lava cake. Rich and moist chocolate cake surrounds a molten chocolate center, creating a melt-in-your-mouth experience with every bite. Served warm with a scoop of vanilla ice cream.",
+    "MealType": "Dessert",
+    "MealRating": "4.9",
+    "MealTime": "30 minutes",
+    "MealCalories": "400",
+    "MealIngredients": "Dark chocolate, butter, sugar, eggs, flour, vanilla extract, salt, vanilla ice cream"
+  },
+  {
+    "MealName": "Fruit Tart",
+    "MealPicture": "fruit_tart.jpg",
+    "MealDescription": "Delight in the freshness of seasonal fruits atop a buttery and flaky pastry crust with our exquisite fruit tart. A vibrant medley of strawberries, blueberries, kiwi, and raspberries sits atop a smooth custard filling, creating a beautiful and delicious dessert perfect for any occasion.",
+    "MealType": "Dessert",
+    "MealRating": "4.7",
+    "MealTime": "45 minutes",
+    "MealCalories": "320",
+    "MealIngredients": "Pastry dough, custard filling, strawberries, blueberries, kiwi, raspberries, apricot glaze"
+  }
+]
