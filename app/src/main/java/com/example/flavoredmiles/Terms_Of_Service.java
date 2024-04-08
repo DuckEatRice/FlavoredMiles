@@ -61,6 +61,14 @@ public class Terms_Of_Service extends AppCompatActivity {
             }
         });
 
+        credit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent credits = new Intent(getApplicationContext(), CreditsScreen.class);
+                startActivity(credits);
+            }
+        });
+
         Logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

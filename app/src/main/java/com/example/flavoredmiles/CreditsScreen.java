@@ -9,7 +9,7 @@ import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.TextView;
 
-public class Privacy extends AppCompatActivity {
+public class CreditsScreen extends AppCompatActivity {
 
     TextView coupon;
     TextView credit;
@@ -20,7 +20,7 @@ public class Privacy extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_privacy);
+        setContentView(R.layout.activity_credits_screen);
 
         coupon = findViewById(R.id.Coupon);
         credit = findViewById(R.id.Credits);
@@ -75,6 +75,5 @@ public class Privacy extends AppCompatActivity {
                 startActivity(log);
             }
         });
-
     }
 }
