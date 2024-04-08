@@ -4,63 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5C5C5C"
-    tools:context=".MainActivity">
+    tools:context=".Privacy">
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="538dp"
-        android:layout_height="694dp"
-        android:layout_marginBottom="140dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/starterscreen" />
-
-    <TextView
-        android:id="@+id/textureView"
-        android:layout_width="463dp"
-        android:layout_height="110dp"
-        android:background="#000000"
-        android:backgroundTint="#D64759"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="291dp"
-        android:layout_height="28dp"
-        android:fontFamily="@font/alegreya"
-        android:gravity="center|center_horizontal"
-        android:text="Welcome To Flavored Miles"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="bold"
+    <View
+        android:id="@+id/view2"
+        android:layout_width="413dp"
+        android:layout_height="65dp"
+        android:background="#5C5C5C"
+        android:backgroundTint="#5C5C5C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.787" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="70dp"
-        android:layout_height="22dp"
-        android:fontFamily="@font/alegreya"
-        android:gravity="center|center_horizontal"
-        android:text="Sign Up"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.888" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView8"
@@ -158,50 +114,41 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.947" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="70dp"
-        android:layout_height="22dp"
-        android:fontFamily="@font/alegreya"
-        android:gravity="center|center_horizontal"
-        android:text="Log In"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.888" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="316dp"
-        android:layout_height="48dp"
-        android:fontFamily="@font/alegreya"
-        android:gravity="center|center_horizontal"
-        android:text="Shared and delightfulfor an easy and enjoyable food ordering experience."
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.852" />
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="51dp"
         android:layout_height="48dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textureView"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/logo" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="410dp"
+        android:layout_height="450dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.779"
+        app:srcCompat="@drawable/privacy" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="412dp"
+        android:layout_height="210dp"
+        android:background="#000000"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
