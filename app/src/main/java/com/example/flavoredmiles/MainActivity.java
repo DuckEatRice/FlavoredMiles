@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<JSONFile> FoodsList = new ArrayList<>();
 
+    TextView Login;
+    TextView SignUp;
     TextView coupon;
     TextView credit;
     TextView Terms;
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Login = findViewById(R.id.login);
+        SignUp = findViewById(R.id.signup);
         coupon = findViewById(R.id.Coupon);
         credit = findViewById(R.id.Credits);
         Terms = findViewById(R.id.TOS);
@@ -84,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent log = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(log);
+            }
+        });
+
+        Login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent login = new Intent(getApplicationContext(), LogInScreen.class);
+                startActivity(login);
             }
         });
 

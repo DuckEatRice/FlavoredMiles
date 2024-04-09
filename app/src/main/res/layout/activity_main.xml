@@ -23,7 +23,7 @@
         android:layout_width="463dp"
         android:layout_height="110dp"
         android:background="#000000"
-        android:backgroundTint="#D64759"
+        android:backgroundTint="#DD5667"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -46,7 +46,7 @@
         app:layout_constraintVertical_bias="0.787" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/signup"
         android:layout_width="70dp"
         android:layout_height="22dp"
         android:fontFamily="@font/alegreya"
@@ -159,7 +159,7 @@
         app:layout_constraintVertical_bias="0.947" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/login"
         android:layout_width="70dp"
         android:layout_height="22dp"
         android:fontFamily="@font/alegreya"
