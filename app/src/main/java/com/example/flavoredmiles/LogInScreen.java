@@ -3,16 +3,26 @@ package com.example.flavoredmiles;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.view.View;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.TextView;
 
-public abstract class LogInScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class LogInScreen extends AppCompatActivity { // implements AdapterView.OnItemSelectedListener{
 
-    private Spinner spinner;
-    private static final String[] paths = {"item 1", "item 2", "item 3"};
+    /*private Spinner Year;
+    private Spinner Month;
+    private Spinner Day;*/
+
+    TextView signUp;
+    ImageView back;
 
 
     @SuppressLint("MissingInflatedId")
@@ -21,32 +31,55 @@ public abstract class LogInScreen extends AppCompatActivity implements AdapterVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_screen);
 
-        spinner = (Spinner)findViewById(R.id.spinner);
-        ArrayAdapter<String>adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,paths);
+        signUp = findViewById(R.id.SignUp);
+        back = findViewById(R.id.backButton);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        SpannableString SignUp  = new SpannableString("Sign In");
+        SignUp.setSpan(new UnderlineSpan(), 0, SignUp.length(), 0);
+        signUp.setText(SignUp);
 
-    }
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
+                startActivity(intent);
+            }
+        });
 
-    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        switch (position) {
-            case 0:
-                // Whatever you want to happen when the first item gets selected
-                break;
-            case 1:
-                // Whatever you want to happen when the second item gets selected
-                break;
-            case 2:
-                // Whatever you want to happen when the thrid item gets selected
-                break;
 
-        }
-    }
 
-    public void onNothingSelected(AdapterView<?> parent) {
-        // TODO Auto-generated method stub
+
+
+
+        /*Year = findViewById(R.id.Year);
+        String[] Years = getResources().getStringArray(R.array.Years);
+
+        ArrayAdapter yearAdapter = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item,Years);
+
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Year.setAdapter(yearAdapter);
+
+        Year.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });*/
+
     }
 }

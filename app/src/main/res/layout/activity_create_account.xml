@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateAccount"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="-8dp">
+
+
+    <View
+        android:id="@+id/view22"
+        android:layout_width="375dp"
+        android:layout_height="1dp"
+        android:background="#000000"
+        android:backgroundTint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.734" />
+
+    <View
+        android:id="@+id/view20"
+        android:layout_width="382dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/ocean_blue_account_background"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Sign_In"
+        app:layout_constraintVertical_bias="0.562" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="108dp"
+        android:layout_height="29dp"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center|center_horizontal"
+        android:text="Sign Up"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view20"
+        app:layout_constraintEnd_toEndOf="@+id/view20"
+        app:layout_constraintStart_toStartOf="@+id/view20"
+        app:layout_constraintTop_toTopOf="@+id/view20"
+        app:layout_constraintVertical_bias="0.52" />
+
+    <View
+        android:id="@+id/view18"
+        android:layout_width="382dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/gray_account_background"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Sign_In"
+        app:layout_constraintVertical_bias="0.428" />
+
+    <EditText
+        android:id="@+id/days4"
+        android:layout_width="100dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="328dp"
+        android:background="@null"
+        android:ems="10"
+        android:fontFamily="@font/inria_serif_light"
+        android:hint="Password"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorHint="@color/material_dynamic_neutral_variant10"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="382dp"
+        android:layout_height="54dp"
+        android:background="@drawable/account_background"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Sign_In"
+        app:layout_constraintVertical_bias="0.078" />
+
+    <View
+        android:id="@+id/view15"
+        android:layout_width="382dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/gray_account_background"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Sign_In"
+        app:layout_constraintVertical_bias="0.156" />
+
+    <EditText
+        android:id="@+id/days2"
+        android:layout_width="100dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="472dp"
+        android:background="@null"
+        android:ems="10"
+        android:fontFamily="@font/inria_serif_light"
+        android:hint="Last Name"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorHint="@color/material_dynamic_neutral_variant10"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.752"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/days"
+        android:layout_width="100dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="472dp"
+        android:background="@null"
+        android:ems="10"
+        android:fontFamily="@font/inria_serif_light"
+        android:hint="First Name"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorHint="@color/material_dynamic_neutral_variant10"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <View
+        android:id="@+id/view16"
+        android:layout_width="1dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="455dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/view17"
+        android:layout_width="382dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/gray_account_background"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Sign_In"
+        app:layout_constraintVertical_bias="0.294" />
+
+    <EditText
+        android:id="@+id/days3"
+        android:layout_width="100dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="400dp"
+        android:background="@null"
+        android:ems="10"
+        android:fontFamily="@font/inria_serif_light"
+        android:hint="Email"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorHint="@color/material_dynamic_neutral_variant10"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="40dp"
+        android:layout_height="16dp"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:text="Male"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.665"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.267" />
+
+    <RadioGroup
+        android:id="@+id/Male"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginBottom="548dp"
+        android:background="@drawable/circle_button1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.591"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="47dp"
+        android:layout_height="16dp"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:text="Female"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.917"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.267" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="360dp"
+        android:layout_height="80dp"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:text="Create Account"
+        android:textColor="#000000"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.066" />
+
+    <TextView
+        android:id="@+id/Sign_In"
+        android:layout_width="45dp"
+        android:layout_height="24dp"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:text="Sign In"
+        android:textColor="#6A7EE6"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.639"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.155" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="115dp"
+        android:layout_height="24dp"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:text="Already have an account?"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.155" />
+
+    <EditText
+        android:id="@+id/months"
+        android:layout_width="28dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="544dp"
+        android:background="@null"
+        android:ems="10"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:hint="YYYY"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="@color/material_dynamic_neutral_variant10"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="47dp"
+        android:layout_height="21dp"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:text="Birthday:"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.261" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="261dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:text="By creating an account, you agree to FlavoredMiles's Terms of Service  and acknowledge that FlavoredMiles's Privacy Policy applies to you."
+        android:textColor="#717171"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.806" />
+
+    <EditText
+        android:id="@+id/Days"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="544dp"
+        android:background="@null"
+        android:ems="10"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:hint="DD"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorHint="@color/material_dynamic_neutral_variant10"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.233"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="7dp"
+        android:layout_height="21dp"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:text="/"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.261" />
+
+    <EditText
+        android:id="@+id/Months"
+        android:layout_width="25dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="544dp"
+        android:background="@null"
+        android:ems="10"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:hint="MM"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="@color/material_dynamic_neutral_variant10"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.308"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="7dp"
+        android:layout_height="21dp"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:text="/"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.356"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.261" />
+
+    <View
+        android:id="@+id/view12"
+        android:layout_width="1dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="526dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/Female"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginBottom="548dp"
+        android:background="@drawable/circle_button1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="416dp"
+        android:layout_height="67dp"
+        android:background="#5C5C5C"
+        android:backgroundTint="#5C5C5C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="95dp"
+        android:layout_height="18dp"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center|center_horizontal"
+        android:text="Get to know us"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.942" />
+
+    <TextView
+        android:id="@+id/Credits"
+        android:layout_width="70dp"
+        android:layout_height="16dp"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center|center_horizontal"
+        android:text="Credits Screen"
+        android:textColor="#DFDFDF"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987" />
+
+    <TextView
+        android:id="@+id/Coupon"
+        android:layout_width="70dp"
+        android:layout_height="16dp"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center|center_horizontal"
+        android:text="Coupon Codes"
+        android:textColor="#DFDFDF"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.965" />
+
+    <TextView
+        android:id="@+id/TOS"
+        android:layout_width="61dp"
+        android:layout_height="13dp"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center|center_horizontal"
+        android:text="Terms of Service"
+        android:textColor="#DFDFDF"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.947" />
+
+    <TextView
+        android:id="@+id/coupon3"
+        android:layout_width="87dp"
+        android:layout_height="22dp"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center|center_horizontal"
+        android:text="© 2024 FlavoredMiles All Rights Reserved."
+        android:textColor="#DFDFDF"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987" />
+
+    <TextView
+        android:id="@+id/Privacy"
+        android:layout_width="61dp"
+        android:layout_height="13dp"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center|center_horizontal"
+        android:text="Privacy"
+        android:textColor="#DFDFDF"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.947" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="51dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/logo" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
