@@ -3,6 +3,8 @@ package com.example.flavoredmiles;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -31,6 +34,13 @@ public class CreateAccount extends AppCompatActivity {
     TextView Terms;
     TextView Privacy;
     View Logo;
+    EditText Day;
+    EditText Month;
+    EditText Year;
+    EditText FirstName;
+    EditText LastName;
+    EditText Email;
+    EditText Password;
 
 
     @SuppressLint("MissingInflatedId")
@@ -101,6 +111,14 @@ public class CreateAccount extends AppCompatActivity {
         Sign_in.setSpan(new UnderlineSpan(), 0, Sign_in.length(), 0);
         Signin.setText(Sign_in);
 
+        Signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
+                startActivity(intent);
+            }
+        });
+
         male = findViewById(R.id.Male);
         female = findViewById(R.id.Female);
 
@@ -122,6 +140,21 @@ public class CreateAccount extends AppCompatActivity {
             }
         });
 
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+        Day = findViewById(R.id.Days);
+        Month = findViewById(R.id.Months);
+        Year = findViewById(R.id.Years);
+        FirstName = findViewById(R.id.FirstName);
+        LastName = findViewById(R.id.LastName);
+        Email = findViewById(R.id.CreateEmail);
+        Password = findViewById(R.id.CreatePassword);
+
+        String key = Integer.toString(0);
+
+        SharedPreferences itemPreferences = getSharedPreferences("saveData_" + key, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = itemPreferences.edit();
 
 
         /*Day = findViewById(R.id.Day);
