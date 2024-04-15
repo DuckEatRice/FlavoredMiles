@@ -1,19 +1,30 @@
 package com.example.flavoredmiles;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.view.View;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LogInScreen extends AppCompatActivity { // implements AdapterView.OnItemSelectedListener{
 
@@ -21,8 +32,13 @@ public class LogInScreen extends AppCompatActivity { // implements AdapterView.O
     private Spinner Month;
     private Spinner Day;*/
 
+    Context context;
+    FirebaseAuth mAuth;
     TextView signUp;
     ImageView back;
+    Button login;
+    EditText emailLogIn;
+    EditText passwordLogIn;
 
 
     @SuppressLint("MissingInflatedId")
@@ -30,11 +46,15 @@ public class LogInScreen extends AppCompatActivity { // implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_screen);
+        mAuth = FirebaseAuth.getInstance();
 
         signUp = findViewById(R.id.SignUp);
         back = findViewById(R.id.backButton);
+        login = findViewById(R.id.LogIn);
+        emailLogIn = findViewById(R.id.Email);
+        passwordLogIn = findViewById(R.id.Password);
 
-        SpannableString SignUp  = new SpannableString("Sign In");
+        SpannableString SignUp  = new SpannableString("Sign Up");
         SignUp.setSpan(new UnderlineSpan(), 0, SignUp.length(), 0);
         signUp.setText(SignUp);
 
@@ -54,9 +74,41 @@ public class LogInScreen extends AppCompatActivity { // implements AdapterView.O
             }
         });
 
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email, password;
+                email = String.valueOf(emailLogIn.getText().toString());
+                password = String.valueOf(passwordLogIn.getText().toString());
 
+                if (TextUtils.isEmpty(email))
+                {
+                    Toast.makeText(context, "Enter a valid email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(password))
+                {
+                    Toast.makeText(context, "Enter a valid password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show();
+                                    //Intent intent = new Intent(context, )
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(context, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
 
+            }
+        });
 
 
         /*Year = findViewById(R.id.Year);

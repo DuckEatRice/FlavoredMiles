@@ -1,5 +1,6 @@
 package com.example.flavoredmiles;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -9,7 +10,9 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -19,9 +22,19 @@ import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class CreateAccount extends AppCompatActivity {
 
+    FirebaseAuth mAuth;
+    Context context;
     int daysAmount = 0;
     int monthsAmount = 0;
     int yearsAmount = 0;
@@ -41,6 +54,8 @@ public class CreateAccount extends AppCompatActivity {
     EditText LastName;
     EditText Email;
     EditText Password;
+    View SignUpButton;
+    TextView SignUpText;
 
 
     @SuppressLint("MissingInflatedId")
@@ -48,6 +63,7 @@ public class CreateAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+        mAuth = FirebaseAuth.getInstance();
 
         coupon = findViewById(R.id.Coupon);
         credit = findViewById(R.id.Credits);
@@ -150,11 +166,76 @@ public class CreateAccount extends AppCompatActivity {
         LastName = findViewById(R.id.LastName);
         Email = findViewById(R.id.CreateEmail);
         Password = findViewById(R.id.CreatePassword);
+        SignUpButton = findViewById(R.id.SignUpButton);
+        SignUpText = findViewById(R.id.SignUpText);
 
-        String key = Integer.toString(0);
+        SignUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email, password, day, month, year, firstName, lastname;
+                email = String.valueOf(Email.getText().toString());
+                password = String.valueOf(Password.getText().toString());
+                day = String.valueOf(Day.getText().toString());
+                month = String.valueOf(Month.getText().toString());
+                year = String.valueOf(Year.getText().toString());
+                firstName = String.valueOf(FirstName.getText().toString());
+                lastname = String.valueOf(LastName.getText().toString());
 
-        SharedPreferences itemPreferences = getSharedPreferences("saveData_" + key, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = itemPreferences.edit();
+                if (TextUtils.isEmpty(email))
+                {
+                    Toast.makeText(context, "Enter a valid email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(password))
+                {
+                    Toast.makeText(context, "Enter a valid password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(day))
+                {
+                    Toast.makeText(context, "Enter a valid day", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(month))
+                {
+                    Toast.makeText(context, "Enter a valid month", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(year))
+                {
+                    Toast.makeText(context, "Enter a valid year", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(firstName))
+                {
+                    Toast.makeText(context, "Enter a valid name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(lastname))
+                {
+                    Toast.makeText(context, "Enter a valid name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(context, "Account Created", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(CreateAccount.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+
+            }
+        });
+
+
 
 
         /*Day = findViewById(R.id.Day);
