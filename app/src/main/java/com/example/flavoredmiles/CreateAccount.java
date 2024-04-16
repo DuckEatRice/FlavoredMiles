@@ -227,7 +227,7 @@ public class CreateAccount extends AppCompatActivity {
                     return;
                 }
 
-                mAuth.createUserWithEmailAndPassword(email, password)
+                mAuth.createUserWithEmailAndPassword(email, password)//, day, month, year, firstName, lastname)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {

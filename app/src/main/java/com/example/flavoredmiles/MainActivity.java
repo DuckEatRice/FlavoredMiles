@@ -99,6 +99,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        SignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent login = new Intent(getApplicationContext(), LogInScreen.class);
+                startActivity(login);
+            }
+        });
+
 
 
         /*String temp = loadJSONFromAsset();
