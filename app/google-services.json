@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "264786014412",
+    "project_id": "login-register-flavoredmiles",
+    "storage_bucket": "login-register-flavoredmiles.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264786014412:android:29f75d2763bc1b81e4d269",
+        "android_client_info": {
+          "package_name": "com.example.flavoredmiles"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACHqCVgmew0ZwFdOitjuFpkWMXA1rbc_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

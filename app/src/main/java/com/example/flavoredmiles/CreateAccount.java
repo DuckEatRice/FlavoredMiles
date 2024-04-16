@@ -1,24 +1,40 @@
 package com.example.flavoredmiles;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class CreateAccount extends AppCompatActivity {
 
+    FirebaseAuth mAuth;
+    Context context;
     int daysAmount = 0;
     int monthsAmount = 0;
     int yearsAmount = 0;
@@ -31,6 +47,25 @@ public class CreateAccount extends AppCompatActivity {
     TextView Terms;
     TextView Privacy;
     View Logo;
+    EditText Day;
+    EditText Month;
+    EditText Year;
+    EditText FirstName;
+    EditText LastName;
+    EditText Email;
+    EditText Password;
+    View SignUpButton;
+    TextView SignUpText;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            //Intent intent = new Intent(context, )
+        }
+    }
 
 
     @SuppressLint("MissingInflatedId")
@@ -38,6 +73,7 @@ public class CreateAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+        mAuth = FirebaseAuth.getInstance();
 
         coupon = findViewById(R.id.Coupon);
         credit = findViewById(R.id.Credits);
@@ -101,6 +137,14 @@ public class CreateAccount extends AppCompatActivity {
         Sign_in.setSpan(new UnderlineSpan(), 0, Sign_in.length(), 0);
         Signin.setText(Sign_in);
 
+        Signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
+                startActivity(intent);
+            }
+        });
+
         male = findViewById(R.id.Male);
         female = findViewById(R.id.Female);
 
@@ -121,6 +165,87 @@ public class CreateAccount extends AppCompatActivity {
                 male.setBackgroundResource(R.drawable.circle_button1);
             }
         });
+
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+        Day = findViewById(R.id.Days);
+        Month = findViewById(R.id.Months);
+        Year = findViewById(R.id.Years);
+        FirstName = findViewById(R.id.FirstName);
+        LastName = findViewById(R.id.LastName);
+        Email = findViewById(R.id.CreateEmail);
+        Password = findViewById(R.id.CreatePassword);
+        SignUpButton = findViewById(R.id.SignUpButton);
+        SignUpText = findViewById(R.id.SignUpText);
+
+        SignUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email, password, day, month, year, firstName, lastname;
+                email = String.valueOf(Email.getText().toString());
+                password = String.valueOf(Password.getText().toString());
+                day = String.valueOf(Day.getText().toString());
+                month = String.valueOf(Month.getText().toString());
+                year = String.valueOf(Year.getText().toString());
+                firstName = String.valueOf(FirstName.getText().toString());
+                lastname = String.valueOf(LastName.getText().toString());
+
+                if (TextUtils.isEmpty(email))
+                {
+                    Toast.makeText(getApplicationContext(), "Enter a valid email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(password))
+                {
+                    Toast.makeText(getApplicationContext(), "Enter a valid password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(day))
+                {
+                    Toast.makeText(getApplicationContext(), "Enter a valid day", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(month))
+                {
+                    Toast.makeText(getApplicationContext(), "Enter a valid month", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(year))
+                {
+                    Toast.makeText(getApplicationContext(), "Enter a valid year", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(firstName))
+                {
+                    Toast.makeText(getApplicationContext(), "Enter a valid name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(lastname))
+                {
+                    Toast.makeText(getApplicationContext(), "Enter a valid name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                mAuth.createUserWithEmailAndPassword(email, password)//, day, month, year, firstName, lastname)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "Account Created", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
+                                    startActivity(intent);
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+
+            }
+        });
+
 
 
 
