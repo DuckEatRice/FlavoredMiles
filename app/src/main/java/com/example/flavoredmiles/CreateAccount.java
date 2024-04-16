@@ -57,6 +57,16 @@ public class CreateAccount extends AppCompatActivity {
     View SignUpButton;
     TextView SignUpText;
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            //Intent intent = new Intent(context, )
+        }
+    }
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -183,37 +193,37 @@ public class CreateAccount extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(email))
                 {
-                    Toast.makeText(context, "Enter a valid email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter a valid email", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password))
                 {
-                    Toast.makeText(context, "Enter a valid password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter a valid password", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(day))
                 {
-                    Toast.makeText(context, "Enter a valid day", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter a valid day", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(month))
                 {
-                    Toast.makeText(context, "Enter a valid month", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter a valid month", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(year))
                 {
-                    Toast.makeText(context, "Enter a valid year", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter a valid year", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(firstName))
                 {
-                    Toast.makeText(context, "Enter a valid name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter a valid name", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(lastname))
                 {
-                    Toast.makeText(context, "Enter a valid name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter a valid name", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -222,11 +232,12 @@ public class CreateAccount extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(context, "Account Created", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Account Created", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
+                                    startActivity(intent);
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(CreateAccount.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
