@@ -48,9 +48,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodVi
         {
             super(itemView);
 
-            /*textView = itemView.findViewById(R.id.name);
+            textView = itemView.findViewById(R.id.name);
             imageView = itemView.findViewById(R.id.blackStar);
-            cardView = itemView.findViewById(R.id.cardView);*/
+            cardView = itemView.findViewById(R.id.cardView);
         }
     }
 
@@ -72,6 +72,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodVi
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(context,MainActivity.class);
+                intent.putExtra("name:",javaList.get(position).getMealName());
+                intent.putExtra("price",javaList.get(position).getPrice());
 
             }
         });

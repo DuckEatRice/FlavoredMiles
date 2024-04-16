@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Privacy = findViewById(R.id.Privacy);
         Logo = findViewById(R.id.logo);
 
+
         SpannableString couponCodes  = new SpannableString("Coupon Codes");
         couponCodes.setSpan(new UnderlineSpan(), 0, couponCodes.length(), 0);
         coupon.setText(couponCodes);
