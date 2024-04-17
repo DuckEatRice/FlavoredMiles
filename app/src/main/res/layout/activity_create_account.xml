@@ -297,7 +297,7 @@
 
     <EditText
         android:id="@+id/Years"
-        android:layout_width="28dp"
+        android:layout_width="35dp"
         android:layout_height="21dp"
         android:layout_marginBottom="540dp"
         android:background="@null"
@@ -305,14 +305,15 @@
         android:fontFamily="@font/inria_serif_light"
         android:gravity="center"
         android:hint="YYYY"
-        android:inputType="text"
+        android:inputType="number"
+        android:maxLength="4"
         android:textColor="#000000"
         android:textColorHint="@color/material_dynamic_neutral_variant10"
         android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintHorizontal_bias="0.396"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -328,10 +329,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintVertical_bias="0.267" />
 
     <TextView
         android:id="@+id/textView21"
@@ -350,7 +351,7 @@
 
     <EditText
         android:id="@+id/Days"
-        android:layout_width="21dp"
+        android:layout_width="30dp"
         android:layout_height="21dp"
         android:layout_marginBottom="540dp"
         android:background="@null"
@@ -358,7 +359,8 @@
         android:fontFamily="@font/inria_serif_light"
         android:gravity="center"
         android:hint="DD"
-        android:inputType="text"
+        android:inputType="number"
+        android:maxLength="2"
         android:textColor="#000000"
         android:textColorHighlight="#000000"
         android:textColorHint="@color/material_dynamic_neutral_variant10"
@@ -366,7 +368,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.233"
+        app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -382,14 +384,14 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintHorizontal_bias="0.259"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintVertical_bias="0.267" />
 
     <EditText
         android:id="@+id/Months"
-        android:layout_width="25dp"
+        android:layout_width="30dp"
         android:layout_height="21dp"
         android:layout_marginBottom="540dp"
         android:background="@null"
@@ -397,14 +399,15 @@
         android:fontFamily="@font/inria_serif_light"
         android:gravity="center"
         android:hint="MM"
-        android:inputType="text"
+        android:inputType="number"
+        android:maxLength="2"
         android:textColor="#000000"
         android:textColorHint="@color/material_dynamic_neutral_variant10"
         android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.308"
+        app:layout_constraintHorizontal_bias="0.293"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -420,10 +423,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.356"
+        app:layout_constraintHorizontal_bias="0.351"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintVertical_bias="0.267" />
 
     <View
         android:id="@+id/view12"
@@ -565,6 +568,17 @@
         app:layout_constraintTop_toTopOf="@+id/view2"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/view_or_not"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="320dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/noview" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

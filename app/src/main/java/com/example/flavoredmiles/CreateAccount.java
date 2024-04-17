@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -25,15 +27,25 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CreateAccount extends AppCompatActivity {
 
-    FirebaseAuth mAuth;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
     Context context;
     int daysAmount = 0;
     int monthsAmount = 0;
@@ -56,12 +68,13 @@ public class CreateAccount extends AppCompatActivity {
     EditText Password;
     View SignUpButton;
     TextView SignUpText;
+    ImageView view_or_not;
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = fAuth.getCurrentUser();
         if(currentUser != null){
             //Intent intent = new Intent(context, )
         }
@@ -73,7 +86,8 @@ public class CreateAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-        mAuth = FirebaseAuth.getInstance();
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
 
         coupon = findViewById(R.id.Coupon);
         credit = findViewById(R.id.Credits);
@@ -166,6 +180,25 @@ public class CreateAccount extends AppCompatActivity {
             }
         });
 
+        final int[] clicks = {0};
+
+        view_or_not = findViewById(R.id.view_or_not);
+
+        view_or_not.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clicks[0]++;
+                if(clicks[0] % 2 != 0)
+                {
+                    view_or_not.setBackgroundResource(R.drawable.view);
+                }
+                else
+                {
+                    view_or_not.setBackgroundResource(R.drawable.noview);
+                }
+            }
+        });
+
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -179,60 +212,79 @@ public class CreateAccount extends AppCompatActivity {
         SignUpButton = findViewById(R.id.SignUpButton);
         SignUpText = findViewById(R.id.SignUpText);
 
+        if(clicks[0] % 2 == 0)
+        {
+            Password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+        else if (clicks[0] % 2 != 0)
+        {
+            Password.setInputType(InputType.TYPE_CLASS_TEXT);
+        }
+
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email, password, day, month, year, firstName, lastname;
-                email = String.valueOf(Email.getText().toString());
-                password = String.valueOf(Password.getText().toString());
-                day = String.valueOf(Day.getText().toString());
-                month = String.valueOf(Month.getText().toString());
-                year = String.valueOf(Year.getText().toString());
-                firstName = String.valueOf(FirstName.getText().toString());
-                lastname = String.valueOf(LastName.getText().toString());
+                email = String.valueOf(Email.getText().toString().trim());
+                password = String.valueOf(Password.getText().toString().trim());
+                day = String.valueOf(Day.getText().toString().trim());
+                month = String.valueOf(Month.getText().toString().trim());
+                year = String.valueOf(Year.getText().toString().trim());
+                firstName = String.valueOf(FirstName.getText().toString().trim());
+                lastname = String.valueOf(LastName.getText().toString().trim());
 
-                if (TextUtils.isEmpty(email))
+                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(day) || TextUtils.isEmpty(month) || TextUtils.isEmpty(year) || TextUtils.isEmpty(firstName) || TextUtils.isEmpty(lastname))
                 {
-                    Toast.makeText(getApplicationContext(), "Enter a valid email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Fill out the required information", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (TextUtils.isEmpty(password))
+                if (password.length() < 6)
                 {
-                    Toast.makeText(getApplicationContext(), "Enter a valid password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(day))
-                {
-                    Toast.makeText(getApplicationContext(), "Enter a valid day", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(month))
-                {
-                    Toast.makeText(getApplicationContext(), "Enter a valid month", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(year))
-                {
-                    Toast.makeText(getApplicationContext(), "Enter a valid year", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(firstName))
-                {
-                    Toast.makeText(getApplicationContext(), "Enter a valid name", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(lastname))
-                {
-                    Toast.makeText(getApplicationContext(), "Enter a valid name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Password length must be >= 6 characters", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                mAuth.createUserWithEmailAndPassword(email, password)//, day, month, year, firstName, lastname)
+
+                fAuth.createUserWithEmailAndPassword(email, password)//, day, month, year, firstName, lastname)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                Log.d("RianButtala", day + month + year + firstName + lastname);
+
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "Account Created", Toast.LENGTH_SHORT).show();
+
+                                    //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    String userId = fAuth.getCurrentUser().getUid();
+
+                                    /*FirebaseDatabase db = FirebaseDatabase.getInstance();
+                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                    DatabaseReference node = db.getReference("MealUsers");//.child(userId);
+
+                                    FireBaseUser newUser = new FireBaseUser(email, day, month, year, firstName, lastname);
+                                    node.child(userId).setValue(newUser);*/
+
+                                    DocumentReference documentReference = fStore.collection("MealUsers").document(userId);
+                                    Map<String,Object> MealUser = new HashMap<>();
+                                    MealUser.put("email",email);
+                                    MealUser.put("day",day);
+                                    MealUser.put("month",month);
+                                    MealUser.put("year",year);
+                                    MealUser.put("firstName",firstName);
+                                    MealUser.put("lastName",lastname);
+                                    documentReference.set(MealUser).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(getApplicationContext(), "Successful Account Created for: " + firstName, Toast.LENGTH_SHORT).show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(getApplicationContext(), "Account Creation Failure.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+
                                     Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
                                     startActivity(intent);
                                 } else {
@@ -246,55 +298,30 @@ public class CreateAccount extends AppCompatActivity {
             }
         });
 
-
-
-
-        /*Day = findViewById(R.id.Day);
-        String[] Days = getResources().getStringArray(R.array.Days);
-
-        ArrayAdapter dayAdapter = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item,Days);
-
-        dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Day.setAdapter(dayAdapter);
-
-        Day.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //int dayValue = (int) adapterView.getItemAtPosition(i);
-                //daysAmount += dayValue;
-
-                ((TextView) parent.getChildAt(0)).setTextSize(7);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        Month = findViewById(R.id.Months);
-        String[] Months = getResources().getStringArray(R.array.Months);
-
-        ArrayAdapter monthAdapter = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item,Months);
-
-        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Month.setAdapter(monthAdapter);
-
-        Month.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextSize(7);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
-
     }
+
+    /*private void addUser(String email, String day, String month, String year, String firstName, String lastName) {
+        // Logic to add user to firestore
+        Map<String, Object> MealUser = new HashMap<>();
+        MealUser.put("email", email);
+        MealUser.put("day", day);
+        MealUser.put("month", month);
+        MealUser.put("year", year);
+        MealUser.put("firstName", firstName);
+        MealUser.put("lastName", lastName);
+
+        FirebaseFirestore.collection("users").document("LhYiGh1knaf7zGrSmGEQ").set(MealUser)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot added with ID: ");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener<Exception>() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        Log.w("TAG", "Error adding document", e);
+                    }
+                });
+    }*/
 }
