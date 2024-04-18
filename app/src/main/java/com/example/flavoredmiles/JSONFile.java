@@ -5,7 +5,7 @@ import android.provider.Telephony;
 
 public class JSONFile {
     String MealName;
-    Drawable MealPicture;
+    String MealPicturePath;
     String MealDescription;
     String MealType;
     String Rating;
@@ -14,9 +14,9 @@ public class JSONFile {
     String Calories;
     String Ingredients;
 
-    public JSONFile(String mealName, Drawable mealPicture, String mealDescription, String mealType, String rating, String price, String time, String calories, String ingredients) {
+    public JSONFile(String mealName, String mealPicture, String mealDescription, String mealType, String rating, String price, String time, String calories, String ingredients) {
         MealName = mealName;
-        MealPicture = mealPicture;
+        MealPicturePath = mealPicture;
         MealDescription = mealDescription;
         MealType = mealType;
         Rating = rating;
@@ -30,8 +30,8 @@ public class JSONFile {
         return MealName;
     }
 
-    public Drawable getMealPicture() {
-        return MealPicture;
+    public String getMealPicture() {
+        return MealPicturePath;
     }
 
     public String getMealDescription() {
@@ -66,8 +66,8 @@ public class JSONFile {
         MealName = mealName;
     }
 
-    public void setMealPicture(Drawable mealPicture) {
-        MealPicture = mealPicture;
+    public void setMealPicture(String mealPicture) {
+        MealPicturePath = mealPicture;
     }
 
     public void setMealDescription(String mealDescription) {

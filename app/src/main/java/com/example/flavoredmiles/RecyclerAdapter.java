@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.content.Intent;
 import android.util.*;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -40,17 +41,26 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodVi
 
     public class FoodViewHolder extends RecyclerView.ViewHolder
     {
-        private TextView textView;
-        private ImageView imageView;
+        private TextView name;
+        private TextView time;
+        private TextView price;
+        private TextView rating;
+        private ImageView foodView;
+        private ImageView addButton;
         private CardView cardView;
 
         public FoodViewHolder(@NonNull View itemView)
         {
             super(itemView);
 
-            /*textView = itemView.findViewById(R.id.name);
-            imageView = itemView.findViewById(R.id.blackStar);
-            cardView = itemView.findViewById(R.id.cardView);*/
+            name = itemView.findViewById(R.id.foodname);
+            time = itemView.findViewById(R.id.time);
+            price = itemView.findViewById(R.id.price);
+            rating = itemView.findViewById(R.id.rating);
+            foodView = itemView.findViewById(R.id.foodimage);
+            addButton = itemView.findViewById(R.id.addbutton);
+            cardView = itemView.findViewById(R.id.cardview);
+
         }
     }
 
@@ -69,10 +79,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodVi
     {
         JSONFile item = javaList.get(position);
 
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
+        holder.name.setText(javaList.get(position).getMealName());
+        holder.price.setText(javaList.get(position).getPrice());
+        holder.rating.setText(javaList.get(position).getRating());
+        holder.time.setText(javaList.get(position).getTime());
+
+
+        String imageName = item.getMealPicture();
+        int resourceId = context.getResources().getIdentifier(javaList.get(position).getMealPicture(), "drawable", holder.itemView.getContext().getPackageName());
+
+        if (resourceId != 0) {
+            holder.foodView.setImageResource(resourceId); // Set the image to the ImageView
+        } else {
+            holder.foodView.setImageResource(R.drawable.imagenotfound);
+        }
+
+        holder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(context.getApplicationContext(), "Doesn't work right now :)", Toast.LENGTH_SHORT).show();
             }
         });
     }
