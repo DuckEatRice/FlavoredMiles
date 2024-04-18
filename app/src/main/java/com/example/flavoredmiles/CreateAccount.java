@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
@@ -89,11 +90,11 @@ public class CreateAccount extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
-        coupon = findViewById(R.id.Coupon);
-        credit = findViewById(R.id.Credits);
-        Terms = findViewById(R.id.TOS);
-        Privacy = findViewById(R.id.Privacy);
-        Logo = findViewById(R.id.logo);
+        coupon = findViewById(R.id.createCoupon);
+        credit = findViewById(R.id.createCredits);
+        Terms = findViewById(R.id.createTOS);
+        Privacy = findViewById(R.id.createPrivacy);
+        Logo = findViewById(R.id.createLogo);
 
         SpannableString couponCodes  = new SpannableString("Coupon Codes");
         couponCodes.setSpan(new UnderlineSpan(), 0, couponCodes.length(), 0);
@@ -181,6 +182,7 @@ public class CreateAccount extends AppCompatActivity {
         });
 
         final int[] clicks = {0};
+        Password = findViewById(R.id.CreatePassword);
 
         view_or_not = findViewById(R.id.view_or_not);
 
@@ -190,11 +192,13 @@ public class CreateAccount extends AppCompatActivity {
                 clicks[0]++;
                 if(clicks[0] % 2 != 0)
                 {
-                    view_or_not.setBackgroundResource(R.drawable.view);
+                    view_or_not.setImageResource(R.drawable.noview);
+                    Password.setTransformationMethod(new PasswordTransformationMethod());
                 }
                 else
                 {
-                    view_or_not.setBackgroundResource(R.drawable.noview);
+                    view_or_not.setImageResource(R.drawable.view);
+                    Password.setTransformationMethod(null);
                 }
             }
         });
@@ -208,18 +212,10 @@ public class CreateAccount extends AppCompatActivity {
         FirstName = findViewById(R.id.FirstName);
         LastName = findViewById(R.id.LastName);
         Email = findViewById(R.id.CreateEmail);
-        Password = findViewById(R.id.CreatePassword);
+
         SignUpButton = findViewById(R.id.SignUpButton);
         SignUpText = findViewById(R.id.SignUpText);
 
-        if(clicks[0] % 2 == 0)
-        {
-            Password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        }
-        else if (clicks[0] % 2 != 0)
-        {
-            Password.setInputType(InputType.TYPE_CLASS_TEXT);
-        }
 
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override

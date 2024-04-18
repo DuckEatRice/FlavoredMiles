@@ -11,7 +11,7 @@
         android:id="@+id/imageView5"
         android:layout_width="538dp"
         android:layout_height="694dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="192dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -20,14 +20,14 @@
 
     <TextView
         android:id="@+id/textureView"
-        android:layout_width="463dp"
-        android:layout_height="110dp"
+        android:layout_width="410dp"
+        android:layout_height="101dp"
         android:background="#000000"
-        android:backgroundTint="#DD5667"
+        android:backgroundTint="#D45A64"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintVertical_bias="0.852" />
 
     <TextView
         android:id="@+id/textView3"
@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.787" />
+        app:layout_constraintVertical_bias="0.768" />
 
     <TextView
         android:id="@+id/signup"
@@ -60,103 +60,103 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.888" />
+        app:layout_constraintVertical_bias="0.856" />
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="95dp"
-        android:layout_height="18dp"
+        android:layout_width="104dp"
+        android:layout_height="25dp"
         android:fontFamily="@font/alegreya"
         android:gravity="center|center_horizontal"
         android:text="Get to know us"
         android:textColor="#FFFFFF"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.022"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942" />
-
-    <TextView
-        android:id="@+id/Credits"
-        android:layout_width="70dp"
-        android:layout_height="16dp"
-        android:fontFamily="@font/alegreya"
-        android:gravity="center|center_horizontal"
-        android:text="Credits Screen"
-        android:textColor="#DFDFDF"
-        android:textSize="8sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.021"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.987" />
+        app:layout_constraintVertical_bias="0.919" />
 
     <TextView
         android:id="@+id/Coupon"
-        android:layout_width="70dp"
-        android:layout_height="16dp"
+        android:layout_width="84dp"
+        android:layout_height="17dp"
         android:fontFamily="@font/alegreya"
         android:gravity="center|center_horizontal"
         android:text="Coupon Codes"
         android:textColor="#DFDFDF"
-        android:textSize="8sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.021"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.965" />
+        app:layout_constraintVertical_bias="0.952" />
 
     <TextView
-        android:id="@+id/TOS"
-        android:layout_width="61dp"
-        android:layout_height="13dp"
+        android:id="@+id/Credits"
+        android:layout_width="85dp"
+        android:layout_height="17dp"
         android:fontFamily="@font/alegreya"
         android:gravity="center|center_horizontal"
-        android:text="Terms of Service"
+        android:text="Credits Screen"
         android:textColor="#DFDFDF"
-        android:textSize="8sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintHorizontal_bias="0.021"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.947" />
+        app:layout_constraintVertical_bias="0.98" />
 
     <TextView
         android:id="@+id/coupon3"
-        android:layout_width="87dp"
-        android:layout_height="22dp"
+        android:layout_width="106dp"
+        android:layout_height="33dp"
         android:fontFamily="@font/alegreya"
         android:gravity="center|center_horizontal"
         android:text="© 2024 FlavoredMiles All Rights Reserved."
         android:textColor="#DFDFDF"
-        android:textSize="8sp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintHorizontal_bias="0.895"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.987" />
+        app:layout_constraintVertical_bias="0.979" />
 
     <TextView
         android:id="@+id/Privacy"
-        android:layout_width="61dp"
-        android:layout_height="13dp"
+        android:layout_width="60dp"
+        android:layout_height="18dp"
         android:fontFamily="@font/alegreya"
         android:gravity="center|center_horizontal"
         android:text="Privacy"
         android:textColor="#DFDFDF"
-        android:textSize="8sp"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintHorizontal_bias="0.971"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.947" />
+        app:layout_constraintVertical_bias="0.92" />
+
+    <TextView
+        android:id="@+id/TOS"
+        android:layout_width="79dp"
+        android:layout_height="18dp"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center|center_horizontal"
+        android:text="Terms of Service"
+        android:textColor="#DFDFDF"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.92" />
 
     <TextView
         android:id="@+id/login"
@@ -173,7 +173,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.888" />
+        app:layout_constraintVertical_bias="0.856" />
 
     <TextView
         android:id="@+id/textView4"
@@ -189,7 +189,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.852" />
+        app:layout_constraintVertical_bias="0.831" />
 
     <ImageView
         android:id="@+id/logo"
@@ -200,7 +200,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textureView"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.529"
         app:srcCompat="@drawable/logo" />
 
 

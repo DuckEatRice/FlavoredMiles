@@ -2,6 +2,7 @@ package com.example.flavoredmiles;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -17,16 +18,17 @@ public class CreditsScreen extends AppCompatActivity {
     TextView Privacy;
     View Logo;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credits_screen);
 
-        coupon = findViewById(R.id.Coupon);
-        credit = findViewById(R.id.Credits);
-        Terms = findViewById(R.id.TOS);
-        Privacy = findViewById(R.id.Privacy);
-        Logo = findViewById(R.id.logo);
+        coupon = findViewById(R.id.creditsCoupon);
+        credit = findViewById(R.id.creditsCredits);
+        Terms = findViewById(R.id.creditsTOS);
+        Privacy = findViewById(R.id.creditsPrivacy);
+        Logo = findViewById(R.id.creditsLogo);
 
         SpannableString couponCodes  = new SpannableString("Coupon Codes");
         couponCodes.setSpan(new UnderlineSpan(), 0, couponCodes.length(), 0);

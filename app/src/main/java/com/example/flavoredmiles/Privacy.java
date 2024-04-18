@@ -22,11 +22,11 @@ public class Privacy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_privacy);
 
-        coupon = findViewById(R.id.Coupon);
-        credit = findViewById(R.id.Credits);
-        Terms = findViewById(R.id.TOS);
-        Privacy = findViewById(R.id.Privacy);
-        Logo = findViewById(R.id.logo);
+        coupon = findViewById(R.id.coupon7);
+        credit = findViewById(R.id.credits3);
+        Terms = findViewById(R.id.TOS4);
+        Privacy = findViewById(R.id.privacy3);
+        Logo = findViewById(R.id.logo4);
 
         SpannableString couponCodes  = new SpannableString("Coupon Codes");
         couponCodes.setSpan(new UnderlineSpan(), 0, couponCodes.length(), 0);

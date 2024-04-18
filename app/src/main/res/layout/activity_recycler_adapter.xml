@@ -26,15 +26,17 @@
 
             <ImageView
                 android:id="@+id/foodimage"
-                android:layout_width="259dp"
-                android:layout_height="204dp"
+                android:layout_width="209dp"
+                android:layout_height="217dp"
+                android:background="@drawable/image_background"
+                android:clipToOutline="true"
                 android:src="@drawable/imagenotfound"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintHorizontal_bias="0.509"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.075" />
 
             <TextView
                 android:id="@+id/foodname"
@@ -50,17 +52,18 @@
                 app:layout_constraintHorizontal_bias="0.078"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.758" />
+                app:layout_constraintVertical_bias="0.782" />
 
             <ImageView
                 android:id="@+id/imageView9"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginBottom="17dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginBottom="19dp"
                 android:src="@drawable/bettergoldstar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.204"
+                app:layout_constraintHorizontal_bias="0.2"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -96,17 +99,18 @@
                 app:layout_constraintHorizontal_bias="0.911"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.744" />
+                app:layout_constraintVertical_bias="0.793" />
 
             <ImageView
                 android:id="@+id/imageView11"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginBottom="17dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="24dp"
                 android:src="@drawable/pinkclock"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.688"
+                app:layout_constraintHorizontal_bias="0.659"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView

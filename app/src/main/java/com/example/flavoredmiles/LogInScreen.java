@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.text.style.UnderlineSpan;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -48,6 +49,7 @@ public class LogInScreen extends AppCompatActivity { // implements AdapterView.O
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+            startActivity(intent);
         }
     }
 
@@ -85,6 +87,8 @@ public class LogInScreen extends AppCompatActivity { // implements AdapterView.O
                 startActivity(intent);
             }
         });
+
+        passwordLogIn.setTransformationMethod(new PasswordTransformationMethod());
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

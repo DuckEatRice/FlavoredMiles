@@ -23,11 +23,11 @@ public class Terms_Of_Service extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms_of_service);
 
-        coupon = findViewById(R.id.Coupon);
-        credit = findViewById(R.id.Credits);
-        Terms = findViewById(R.id.TOS);
-        Privacy = findViewById(R.id.Privacy);
-        Logo = findViewById(R.id.logo);
+        coupon = findViewById(R.id.tosCoupon);
+        credit = findViewById(R.id.tosCredits);
+        Terms = findViewById(R.id.tosTOS);
+        Privacy = findViewById(R.id.tosPrivacy);
+        Logo = findViewById(R.id.tosLogo);
 
         SpannableString couponCodes  = new SpannableString("Coupon Codes");
         couponCodes.setSpan(new UnderlineSpan(), 0, couponCodes.length(), 0);
