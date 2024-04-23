@@ -1,18 +1,21 @@
 package com.example.flavoredmiles;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +26,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +48,7 @@ public class MainMenu extends AppCompatActivity {
     TextView Terms;
     TextView Privacy;
     View Logo;
+    TextView gettoknowus;
 
 
 
@@ -48,8 +57,12 @@ public class MainMenu extends AppCompatActivity {
     private ArrayList<JSONFile> FoodsList = new ArrayList<>();
     FirebaseAuth auth;
     Button sampleButton;
-    TextView sample;
+    ImageView backButton;
+    ImageView cartIcon;
+    TextView Welcome;
     FirebaseUser user;
+    FirebaseFirestore fStore;
+    ImageView accountButton;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -114,11 +127,79 @@ public class MainMenu extends AppCompatActivity {
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
-        sample = findViewById(R.id.sampleText);
-        sampleButton = findViewById(R.id.SignOut);
+        fStore = FirebaseFirestore.getInstance();
 
-        if (user == null)
+        user = auth.getCurrentUser();
+        Welcome = findViewById(R.id.welcometitle);
+        backButton = findViewById(R.id.backButton2);
+        cartIcon = findViewById(R.id.cartIcon);
+        //sampleButton = findViewById(R.id.SignOut);
+        accountButton = findViewById(R.id.accountButton);
+        gettoknowus = findViewById(R.id.GetToKnowUs);
+
+
+        if (user != null) {
+            String userId = auth.getCurrentUser().getUid();
+            gettoknowus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_SHORT).show();
+                }
+            });
+            DocumentReference documentReference = fStore.collection("MealUsers").document(userId);
+            documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                    String firstName = documentSnapshot.getString("firstName");
+                    String lastName = documentSnapshot.getString("lastName");
+                    String day = documentSnapshot.getString("day");
+                    String month = documentSnapshot.getString("month");
+                    String year = documentSnapshot.getString("year");
+                    String email = documentSnapshot.getString("email");
+                    Welcome.setText("Welcome, \n" + firstName + " " + lastName);
+
+                    accountButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getApplicationContext(), AccountDetails.class);
+                            intent.putExtra("firstName", firstName);
+                            intent.putExtra("lastName", lastName);
+                            intent.putExtra("day", day);
+                            intent.putExtra("month", month);
+                            intent.putExtra("year", year);
+                            intent.putExtra("email", email);
+                            intent.putExtra("user", userId);
+                            startActivity(intent);
+                        }
+                    });
+                }
+            });
+        }
+        else
+        {
+            Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
+            startActivity(intent);
+            finish();
+        }
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cartIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        /*if (user == null)
         {
             Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
             startActivity(intent);
@@ -126,43 +207,16 @@ public class MainMenu extends AppCompatActivity {
         }
         else
         {
-            sample.setText(user.getEmail());
-        }
+            //sample.setText(user.getEmail());
+        }*/
 
-        sampleButton.setOnClickListener(new View.OnClickListener() {
+        /*sampleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
                 startActivity(intent);
                 finish();
-            }
-        });
-
-        String userId = user.getUid();
-
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users").child(userId);
-
-        /*mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    HashMap<String, Object> userData = (HashMap<String, Object>) snapshot.getValue();
-                    String email = (String) userData.get("email");
-                    String firstName = (String) userData.get("firstName");
-                    String lastName = (String) userData.get("lastName");
-                    String birthday = (String) userData.get("birthday");
-
-                    sample.setText("Email: " + email + "\nName: " + firstName + " " + lastName + "\nBirthday: " + birthday);
-                } else {
-                    // Handle case where user data is not found
-                    Toast.makeText(MainMenu.this, "User data not found", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainMenu.this, "Error retrieving data", Toast.LENGTH_SHORT).show();
             }
         });*/
 

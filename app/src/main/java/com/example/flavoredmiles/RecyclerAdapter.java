@@ -87,6 +87,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodVi
 
         String imageName = item.getMealPicture();
         int resourceId = context.getResources().getIdentifier(javaList.get(position).getMealPicture(), "drawable", holder.itemView.getContext().getPackageName());
+        Log.d("HELP ME PLEASE RAHHH", holder.itemView.getContext().getPackageName());
 
         if (resourceId != 0) {
             holder.foodView.setImageResource(resourceId); // Set the image to the ImageView
@@ -98,6 +99,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodVi
             @Override
             public void onClick(View view) {
                 Toast.makeText(context.getApplicationContext(), "Doesn't work right now :)", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.foodView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, MealDetails.class);
+                intent.putExtra("MealName",javaList.get(position).getMealName());
+                intent.putExtra("MealPicture",javaList.get(position).getMealPicture());
+                intent.putExtra("MealDescription",javaList.get(position).getMealDescription());
+                intent.putExtra("MealType",javaList.get(position).getMealType());
+                intent.putExtra("MealRating",javaList.get(position).getRating());
+                intent.putExtra("MealPrice",javaList.get(position).getPrice());
+                intent.putExtra("MealTime",javaList.get(position).getTime());
+                intent.putExtra("MealCalories",javaList.get(position).getCalories());
+                intent.putExtra("MealIngredients",javaList.get(position).getIngredients());
+                context.startActivity(intent);
             }
         });
     }

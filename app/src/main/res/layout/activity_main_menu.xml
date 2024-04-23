@@ -9,28 +9,34 @@
     tools:context=".MainMenu">
 
 
-    <TextView
-        android:id="@+id/sampleText"
-        android:layout_width="152dp"
-        android:layout_height="78dp"
-        android:layout_marginBottom="644dp"
-        android:gravity="center"
-        android:text="TextView"
+    <ImageView
+        android:id="@+id/backButton2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.861"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/backarrow" />
 
-    <Button
-        android:id="@+id/SignOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="596dp"
-        android:text="SignOut"
+    <TextView
+        android:id="@+id/welcometitle"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:fontFamily="@font/inria_serif_light"
+        android:gravity="center"
+        android:text="Welcome,"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.804"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.212"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.037" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -46,11 +52,12 @@
 
     <TextView
         android:id="@+id/foodname2"
-        android:layout_width="179dp"
-        android:layout_height="60dp"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
         android:fontFamily="@font/inria_serif_light"
         android:gravity="center"
         android:text="Today's Best Food"
+        android:textColor="#000000"
         android:textSize="19sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,7 +65,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.169" />
+        app:layout_constraintVertical_bias="0.182" />
 
     <View
         android:id="@+id/view2"
@@ -73,7 +80,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/GetToKnowUs"
         android:layout_width="95dp"
         android:layout_height="18dp"
         android:fontFamily="@font/alegreya"
@@ -179,5 +186,27 @@
         app:layout_constraintTop_toTopOf="@+id/view2"
         app:layout_constraintVertical_bias="0.757"
         app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/accountButton"
+        android:layout_width="60dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048"
+        app:srcCompat="@drawable/accountsymbol" />
+
+    <ImageView
+        android:id="@+id/cartIcon"
+        android:layout_width="60dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="320dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.087"
+        app:srcCompat="@drawable/carticon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
