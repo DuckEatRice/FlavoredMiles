@@ -50,8 +50,6 @@ public class MainMenu extends AppCompatActivity {
     View Logo;
     TextView gettoknowus;
 
-
-
     private RecyclerAdapter recyclerAdapter;
     private RecyclerView recyclerView;
     private ArrayList<JSONFile> FoodsList = new ArrayList<>();

@@ -6,6 +6,150 @@
     android:layout_height="match_parent"
     tools:context=".CartActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="370dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/gray_constraint_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.856">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/TotalTax"
+        android:layout_width="134dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="125dp"
+        android:gravity="right|fill_vertical"
+        android:text="$0.00"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.844"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.772" />
+
+    <TextView
+        android:id="@+id/SubTotal"
+        android:layout_width="134dp"
+        android:layout_height="22dp"
+        android:gravity="right|fill_vertical"
+        android:text="$0.00"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.844"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.771" />
+
+    <TextView
+        android:id="@+id/Total"
+        android:layout_width="134dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="250dp"
+        android:gravity="right|fill_vertical"
+        android:text="$0.00"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.844"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.771" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:gravity="fill_vertical"
+        android:text="Order Summary"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.714" />
+
+    <TextView
+        android:layout_width="134dp"
+        android:layout_height="22dp"
+        android:gravity="fill_horizontal"
+        android:text="Subtotal"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.771" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="134dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="250dp"
+        android:gravity="fill_horizontal"
+        android:text="Total"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.771" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="134dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="125dp"
+        android:gravity="fill_horizontal"
+        android:text="Total Tax"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.771" />
+
+    <EditText
+        android:id="@+id/couponCode"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:background="@drawable/coupon_background"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Enter your code"
+        android:inputType="text"
+        android:textColorHint="@color/material_dynamic_tertiary10"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.647"
+        tools:ignore="TouchTargetSizeCheck" />
+
     <ImageView
         android:id="@+id/cartBackArrowhi"
         android:layout_width="25dp"
@@ -21,12 +165,42 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRecyclerView"
         android:layout_width="406dp"
-        android:layout_height="486dp"
-        android:layout_marginBottom="204dp"
+        android:layout_height="372dp"
+        android:layout_marginBottom="312dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/activity_cart_cardview" />
+
+    <TextView
+        android:id="@+id/applyCoupon"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="244dp"
+        android:background="@drawable/applycoupon_background"
+        android:gravity="center"
+        android:text="Apply Coupon"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.922"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/PlaceOrder"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/applycoupon_background"
+        android:gravity="center"
+        android:text="Place Order"
+        android:textColor="#FFFFFF"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
