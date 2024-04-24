@@ -78,7 +78,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         double intPrice = Double.valueOf(cartItems.get(position).getMealPrice());
         double RealPrice = intPrice * intQuantity;
         String result = String.format("%.2f", RealPrice);
-        holder.cartRealPrice.setText(result);
+        holder.cartRealPrice.setText("$" + result);
 
 
         int resourceId = context.getResources().getIdentifier(cartItems.get(position).getImageName(), "drawable", holder.itemView.getContext().getPackageName());
@@ -103,7 +103,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 holder.mealPrice.setText("$" + quantityNumber + "*" + cartItems.get(position).getMealPrice());
                 double total = quantityQuantity[0] * intPrice;
                 String totalTotal = String.format("%.2f", total);
-                holder.cartRealPrice.setText(totalTotal);
+                holder.cartRealPrice.setText("$" + totalTotal);
             }
         });
 
@@ -119,7 +119,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     holder.mealPrice.setText("$" + quantityNumber + "*" + cartItems.get(position).getMealPrice());
                     double total = quantityQuantity[0] * intPrice;
                     String totalTotal = String.format("%.2f", total);
-                    holder.cartRealPrice.setText(totalTotal);
+                    holder.cartRealPrice.setText("$" + totalTotal);
                 }
                 else
                 {

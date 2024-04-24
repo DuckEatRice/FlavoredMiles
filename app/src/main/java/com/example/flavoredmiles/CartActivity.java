@@ -35,12 +35,14 @@ public class CartActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         ArrayList<CartItem> cartItems = intent.getParcelableArrayListExtra("cartList"); //line 27 issue
+        ArrayList<CartItem> cartItemsfromRecyclerAdapter = intent.getParcelableArrayListExtra("cartListfromRecyclerAdapter");
 
 
-        if (cartItems == null || cartItems.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Your cart is empty.", Toast.LENGTH_SHORT).show();
+        if ((cartItems == null || cartItems.isEmpty())) {
+            //Toast.makeText(getApplicationContext(), "Your cart is empty.", Toast.LENGTH_SHORT).show();
             // You can also show a different layout here
-        } else {
+        } else
+        {
             Log.d("DEBUGGINGRAHH", "cartItems size: " + cartItems.size());
             for (int j = 0; j < cartItems.size(); j++) {
                 cartItemsArrayList.add(new CartItem(cartItems.get(j).getMealName(), cartItems.get(j).getImageName(), cartItems.get(j).getMealPrice(), cartItems.get(j).getQuantity()));
@@ -49,10 +51,29 @@ public class CartActivity extends AppCompatActivity {
                 Log.d("DEBUGGINGRAHH", "MealPrice: " + cartItems.get(j).getMealPrice());
                 Log.d("DEBUGGINGRAHH", "Quantity:" + cartItems.get(j).getQuantity());
             }
-            Toast.makeText(getApplicationContext(), "Working?", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Working?", Toast.LENGTH_SHORT).show();
             cartAdapter = new CartAdapter(cartItemsArrayList, this, CartActivity.this);
             cartRecyclerView.setAdapter(cartAdapter);
         }
+        if ((cartItemsfromRecyclerAdapter == null || cartItemsfromRecyclerAdapter.isEmpty()))
+        {
+            //Toast.makeText(getApplicationContext(), "Your cart is empty.", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            //Log.d("DEBUGGINGRAHH", "cartItems size: " + cartItems.size());
+            for (int j = 0; j < cartItemsfromRecyclerAdapter.size(); j++) {
+                cartItemsArrayList.add(new CartItem(cartItemsfromRecyclerAdapter.get(j).getMealName(), cartItemsfromRecyclerAdapter.get(j).getImageName(), cartItemsfromRecyclerAdapter.get(j).getMealPrice(), cartItemsfromRecyclerAdapter.get(j).getQuantity()));
+                Log.d("DEBUGGINGRAHH", "MealName: " + cartItemsfromRecyclerAdapter.get(j).getMealName());
+                Log.d("DEBUGGINGRAHH", "ImageName: " + cartItemsfromRecyclerAdapter.get(j).getImageName());
+                Log.d("DEBUGGINGRAHH", "MealPrice: " + cartItemsfromRecyclerAdapter.get(j).getMealPrice());
+                Log.d("DEBUGGINGRAHH", "Quantity:" + cartItemsfromRecyclerAdapter.get(j).getQuantity());
+            }
+            //Toast.makeText(getApplicationContext(), "Working?", Toast.LENGTH_SHORT).show();
+            cartAdapter = new CartAdapter(cartItemsArrayList, this, CartActivity.this);
+            cartRecyclerView.setAdapter(cartAdapter);
+        }
+
 
         cartBackArrow.setOnClickListener(new View.OnClickListener() {
             @Override

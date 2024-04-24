@@ -98,7 +98,26 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodVi
         holder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context.getApplicationContext(), "Doesn't work right now :)", Toast.LENGTH_SHORT).show();
+
+                ArrayList<CartItem> cartItems = new ArrayList<>();
+                /*String quantityNumber = String.valueOf(quantity[0]);
+                CartItem cartItem = new CartItem(MealName, MealPicture, MealPrice, quantityNumber);
+                cartItems.add(cartItem);
+
+                Intent intent1 = new Intent(getApplicationContext(), CartActivity.class);
+                intent1.putParcelableArrayListExtra("cartList", cartItems); //issue
+                startActivity(intent1);
+
+                Toast.makeText(getApplicationContext(), "Added to cart!", Toast.LENGTH_SHORT).show();*/
+
+                CartItem cartItem = new CartItem(javaList.get(position).getMealName(), javaList.get(position).getMealPicture(),javaList.get(position).getPrice(), "1");
+                cartItems.add(cartItem);
+
+                Intent intent = new Intent(context.getApplicationContext(), CartActivity.class);
+                intent.putParcelableArrayListExtra("cartListfromRecyclerAdapter", cartItems);
+                Toast.makeText(activity.getApplicationContext(), "Added to Cart!", Toast.LENGTH_SHORT).show();
+                context.startActivity(intent);
+
             }
         });
 

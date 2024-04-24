@@ -16,10 +16,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerAdapter recyclerAdapter;
-    private RecyclerView recyclerView;
-    private ArrayList<JSONFile> FoodsList = new ArrayList<>();
-
     TextView Login;
     TextView SignUp;
     TextView coupon;
@@ -42,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         Terms = findViewById(R.id.TOS);
         Privacy = findViewById(R.id.Privacy);
         Logo = findViewById(R.id.logo);
+
+        //Spannable String is just for underlining, design purposes.
 
         SpannableString couponCodes  = new SpannableString("Coupon Codes");
         couponCodes.setSpan(new UnderlineSpan(), 0, couponCodes.length(), 0);
