@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,10 +14,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CartActivity extends AppCompatActivity {
 
+    //private ActivityCartBinding binding;
     private RecyclerView cartRecyclerView;
     private CartAdapter cartAdapter;
     ArrayList<CartItem> cartItemsArrayList = new ArrayList<>();
@@ -27,6 +33,9 @@ public class CartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("cart_items", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         cartBackArrow = findViewById(R.id.cartBackArrowhi);
         cartRecyclerView = findViewById(R.id.cartRecyclerView); // Replace with your RecyclerView ID
@@ -44,15 +53,11 @@ public class CartActivity extends AppCompatActivity {
         } else
         {
             Log.d("DEBUGGINGRAHH", "cartItems size: " + cartItems.size());
-            for (int j = 0; j < cartItems.size(); j++) {
+            /*for (int j = 0; j < cartItems.size(); j++) {
                 cartItemsArrayList.add(new CartItem(cartItems.get(j).getMealName(), cartItems.get(j).getImageName(), cartItems.get(j).getMealPrice(), cartItems.get(j).getQuantity()));
-                Log.d("DEBUGGINGRAHH", "MealName: " + cartItems.get(j).getMealName());
-                Log.d("DEBUGGINGRAHH", "ImageName: " + cartItems.get(j).getImageName());
-                Log.d("DEBUGGINGRAHH", "MealPrice: " + cartItems.get(j).getMealPrice());
-                Log.d("DEBUGGINGRAHH", "Quantity:" + cartItems.get(j).getQuantity());
-            }
+            }*/
             //Toast.makeText(getApplicationContext(), "Working?", Toast.LENGTH_SHORT).show();
-            cartAdapter = new CartAdapter(cartItemsArrayList, this, CartActivity.this);
+            cartAdapter = new CartAdapter(cartItems, this, CartActivity.this);
             cartRecyclerView.setAdapter(cartAdapter);
         }
         if ((cartItemsfromRecyclerAdapter == null || cartItemsfromRecyclerAdapter.isEmpty()))
@@ -62,15 +67,11 @@ public class CartActivity extends AppCompatActivity {
         else
         {
             //Log.d("DEBUGGINGRAHH", "cartItems size: " + cartItems.size());
-            for (int j = 0; j < cartItemsfromRecyclerAdapter.size(); j++) {
+            /*for (int j = 0; j < cartItemsfromRecyclerAdapter.size(); j++) {
                 cartItemsArrayList.add(new CartItem(cartItemsfromRecyclerAdapter.get(j).getMealName(), cartItemsfromRecyclerAdapter.get(j).getImageName(), cartItemsfromRecyclerAdapter.get(j).getMealPrice(), cartItemsfromRecyclerAdapter.get(j).getQuantity()));
-                Log.d("DEBUGGINGRAHH", "MealName: " + cartItemsfromRecyclerAdapter.get(j).getMealName());
-                Log.d("DEBUGGINGRAHH", "ImageName: " + cartItemsfromRecyclerAdapter.get(j).getImageName());
-                Log.d("DEBUGGINGRAHH", "MealPrice: " + cartItemsfromRecyclerAdapter.get(j).getMealPrice());
-                Log.d("DEBUGGINGRAHH", "Quantity:" + cartItemsfromRecyclerAdapter.get(j).getQuantity());
-            }
+            }*/
             //Toast.makeText(getApplicationContext(), "Working?", Toast.LENGTH_SHORT).show();
-            cartAdapter = new CartAdapter(cartItemsArrayList, this, CartActivity.this);
+            cartAdapter = new CartAdapter(cartItemsfromRecyclerAdapter, this, CartActivity.this);
             cartRecyclerView.setAdapter(cartAdapter);
         }
 
@@ -82,9 +83,13 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-
-
-
-
     }
+
+    /*public void saveCartItems(SharedPreferences sharedPreferences, SharedPreferences.Editor editor, ArrayList<CartItem> list)
+    {
+         sharedPreferences = getSharedPreferences("cart_items", MODE_PRIVATE);
+         editor = sharedPreferences.edit();
+         editor.putString("cart_items_list", String.valueOf(list));
+    }*/
+
 }

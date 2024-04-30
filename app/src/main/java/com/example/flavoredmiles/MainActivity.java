@@ -39,7 +39,11 @@ public class MainActivity extends AppCompatActivity {
         Privacy = findViewById(R.id.Privacy);
         Logo = findViewById(R.id.logo);
 
-        //Spannable String is just for underlining, design purposes.
+        /**
+         * @SpannableString
+         * Makes it so that text is underlined
+         * https://stackoverflow.com/questions/5645789/how-to-set-underline-text-on-textview
+         */
 
         SpannableString couponCodes  = new SpannableString("Coupon Codes");
         couponCodes.setSpan(new UnderlineSpan(), 0, couponCodes.length(), 0);
@@ -57,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
         PrivacyDocument.setSpan(new UnderlineSpan(), 0, PrivacyDocument.length(), 0);
         Privacy.setText(PrivacyDocument);
 
+        /**
+         * @Intent
+         * Intents to Terms_Of_Service class
+         */
         Terms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents to Privacy class
+         */
         Privacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents to CreditsScreen class
+         */
         credit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents to MainActivity class
+         */
         Logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents to LogInScreen class
+         */
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents to LogInScreen class
+         */
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
