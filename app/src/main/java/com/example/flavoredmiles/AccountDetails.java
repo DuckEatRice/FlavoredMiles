@@ -40,6 +40,9 @@ public class AccountDetails extends AppCompatActivity {
         String email = intent.getStringExtra("email");
         String userID = intent.getStringExtra("user");
 
+        /**
+         * Since we want to keep accounts secure and safe, the "fakeUser" is only half the length of the real userID.
+         */
         int length = userID.length();
         String fakeUser = userID.substring(0, length/2);
 
@@ -61,6 +64,9 @@ public class AccountDetails extends AppCompatActivity {
         accountUserID.setText(" " + fakeUser);
         LargeName.setText(" " + firstName + " " + lastName);
 
+        /**
+         * If user wants to see their full userID, then if clicked on, will show proper information.
+         */
         lockedicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +74,10 @@ public class AccountDetails extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents back to MainMenu class
+         */
         backarrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

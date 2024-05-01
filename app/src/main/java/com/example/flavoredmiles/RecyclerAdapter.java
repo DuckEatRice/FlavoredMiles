@@ -86,6 +86,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodVi
 
 
         String imageName = item.getMealPicture();
+        /**
+         * resourceId just uses the getIdentifier required documentation to get picture information, and uses getResources() to receive said information from the R file.
+         */
         int resourceId = context.getResources().getIdentifier(javaList.get(position).getMealPicture(), "drawable", holder.itemView.getContext().getPackageName());
         Log.d("HELP ME PLEASE RAHHH", holder.itemView.getContext().getPackageName());
 

@@ -60,6 +60,10 @@ public class CartItem implements Parcelable {
         return 0;
     }
 
+    /**
+     * @Parcel
+     * Basically, this is some required method, and if I use "Show Context Actions", automatically adds this method.
+     */
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeString(mealName);

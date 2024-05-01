@@ -297,13 +297,14 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Sign_In"
-        app:layout_constraintVertical_bias="0.294" />
+        app:layout_constraintVertical_bias="0.291" />
 
     <EditText
         android:id="@+id/CreateEmail"
-        android:layout_width="150dp"
+        android:layout_width="300dp"
         android:layout_height="21dp"
         android:layout_marginBottom="400dp"
         android:background="@null"
@@ -318,7 +319,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
 

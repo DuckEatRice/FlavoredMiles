@@ -74,6 +74,11 @@ public class MainMenu extends AppCompatActivity {
         Privacy = findViewById(R.id.Privacy);
         Logo = findViewById(R.id.logo);
 
+        /**
+         * @SpannableString
+         * Makes it so that text is underlined
+         * https://stackoverflow.com/questions/5645789/how-to-set-underline-text-on-textview
+         */
         SpannableString couponCodes  = new SpannableString("Coupon Codes");
         couponCodes.setSpan(new UnderlineSpan(), 0, couponCodes.length(), 0);
         coupon.setText(couponCodes);
@@ -90,6 +95,10 @@ public class MainMenu extends AppCompatActivity {
         PrivacyDocument.setSpan(new UnderlineSpan(), 0, PrivacyDocument.length(), 0);
         Privacy.setText(PrivacyDocument);
 
+        /**
+         * @Intent
+         * Intents to Terms_Of_Service class
+         */
         Terms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,6 +107,10 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents to Privacy class
+         */
         Privacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,6 +119,10 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents to CreditsScreen class
+         */
         credit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,6 +131,10 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents to MainActivity class
+         */
         Logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,7 +143,7 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Line for separation
 
         auth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -135,7 +156,9 @@ public class MainMenu extends AppCompatActivity {
         accountButton = findViewById(R.id.accountButton);
         gettoknowus = findViewById(R.id.GetToKnowUs);
 
-
+        /**
+         * Runs method if the user isn't null
+         */
         if (user != null) {
             String userId = auth.getCurrentUser().getUid();
             gettoknowus.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +171,9 @@ public class MainMenu extends AppCompatActivity {
             documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                    /**
+                     * Gets variables from documentReference which gets the information from FirebaseFirestore
+                     */
                     String firstName = documentSnapshot.getString("firstName");
                     String lastName = documentSnapshot.getString("lastName");
                     String day = documentSnapshot.getString("day");
@@ -156,6 +182,10 @@ public class MainMenu extends AppCompatActivity {
                     String email = documentSnapshot.getString("email");
                     Welcome.setText("Welcome, \n" + firstName + " " + lastName);
 
+                    /**
+                     * @Intent
+                     * Intents information into AccountDetails class
+                     */
                     accountButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -173,13 +203,21 @@ public class MainMenu extends AppCompatActivity {
                 }
             });
         }
+        /**
+         * If user is null, essentially if there is no user logged in
+         * @Intent
+         * Intents back to LogInScreen class
+         */
         else
         {
             Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
             startActivity(intent);
             finish();
         }
-
+        /**
+         * @Intent
+         * Intents to MainActivity class
+         */
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -188,6 +226,10 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents to CartActivity class
+         */
         cartIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -300,3 +342,4 @@ public class MainMenu extends AppCompatActivity {
         return json;
     }
 }
+//victor from 9th grade was here

@@ -70,6 +70,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         System.out.println("bound");
         //CartItem cartItem = cartItems.get(position);
 
+        /**
+         * Sets the necessary TextView statements using the information from the ArrayLists.
+         */
         holder.mealName.setText(cartItems.get(position).getMealName());
         holder.mealPrice.setText("$" + cartItems.get(position).getQuantity() + "*" + cartItems.get(position).getMealPrice());
         holder.quantity.setText(cartItems.get(position).getQuantity());
@@ -80,7 +83,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         String result = String.format("%.2f", RealPrice);
         holder.cartRealPrice.setText("$" + result);
 
-
+        /**
+         * resourceId just uses the getIdentifier required documentation to get picture information, and uses getResources() to receive said information from the R file.
+         */
         int resourceId = context.getResources().getIdentifier(cartItems.get(position).getImageName(), "drawable", holder.itemView.getContext().getPackageName());
         Log.d("HELP ME PLEASE RAHHH", holder.itemView.getContext().getPackageName());
 
@@ -93,6 +98,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         final int[] quantityQuantity = {0};
 
         quantityQuantity[0] += intQuantity;
+
+        /**
+         * When quantity is increased, calories, price, and everything affected by quantity is increased.
+         */
         holder.cartAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +116,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         });
 
+        /**
+         * When quantity is decreased, calories, price, and everything affected by quantity is decreased.
+         */
         holder.cartSubtract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

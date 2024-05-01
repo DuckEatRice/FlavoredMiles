@@ -42,6 +42,10 @@ public class CartActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(CartActivity.this);
         cartRecyclerView.setLayoutManager(layoutManager);
 
+        /**
+         * @Intent
+         * Receives ArrayList from MealDetails
+         */
         Intent intent = getIntent();
         ArrayList<CartItem> cartItems = intent.getParcelableArrayListExtra("cartList"); //line 27 issue
         ArrayList<CartItem> cartItemsfromRecyclerAdapter = intent.getParcelableArrayListExtra("cartListfromRecyclerAdapter");
@@ -57,6 +61,9 @@ public class CartActivity extends AppCompatActivity {
                 cartItemsArrayList.add(new CartItem(cartItems.get(j).getMealName(), cartItems.get(j).getImageName(), cartItems.get(j).getMealPrice(), cartItems.get(j).getQuantity()));
             }*/
             //Toast.makeText(getApplicationContext(), "Working?", Toast.LENGTH_SHORT).show();
+            /**
+             * Depending on the if statement, the CartActivity will set CartAdapter ArrayList differently
+             */
             cartAdapter = new CartAdapter(cartItems, this, CartActivity.this);
             cartRecyclerView.setAdapter(cartAdapter);
         }
@@ -71,11 +78,18 @@ public class CartActivity extends AppCompatActivity {
                 cartItemsArrayList.add(new CartItem(cartItemsfromRecyclerAdapter.get(j).getMealName(), cartItemsfromRecyclerAdapter.get(j).getImageName(), cartItemsfromRecyclerAdapter.get(j).getMealPrice(), cartItemsfromRecyclerAdapter.get(j).getQuantity()));
             }*/
             //Toast.makeText(getApplicationContext(), "Working?", Toast.LENGTH_SHORT).show();
+
+            /**
+             * Depending on the if statement, the CartActivity will set CartAdapter ArrayList differently
+             */
             cartAdapter = new CartAdapter(cartItemsfromRecyclerAdapter, this, CartActivity.this);
             cartRecyclerView.setAdapter(cartAdapter);
         }
 
-
+        /**
+         * @Intent
+         * Intents back to MainMenu class
+         */
         cartBackArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

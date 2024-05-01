@@ -112,6 +112,10 @@ public class CreateAccount extends AppCompatActivity {
         PrivacyDocument.setSpan(new UnderlineSpan(), 0, PrivacyDocument.length(), 0);
         Privacy.setText(PrivacyDocument);
 
+        /**
+         * @Intent
+         * Intents to Terms_Of_Service class
+         */
         Terms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,6 +124,10 @@ public class CreateAccount extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents to Privacy class
+         */
         Privacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,6 +136,10 @@ public class CreateAccount extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents to CreditsScreen class
+         */
         credit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,6 +148,10 @@ public class CreateAccount extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Intents to MainActivity class
+         */
         Logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,10 +164,19 @@ public class CreateAccount extends AppCompatActivity {
 
         Signin = findViewById(R.id.Sign_In);
 
+        /**
+         * @SpannableString
+         * Makes it so that text is underlined
+         * https://stackoverflow.com/questions/5645789/how-to-set-underline-text-on-textview
+         */
         SpannableString Sign_in  = new SpannableString("Sign In");
         Sign_in.setSpan(new UnderlineSpan(), 0, Sign_in.length(), 0);
         Signin.setText(Sign_in);
 
+        /**
+         * @Intent
+         * Intents to LogInScreen class
+         */
         Signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,6 +188,10 @@ public class CreateAccount extends AppCompatActivity {
         male = findViewById(R.id.Male);
         female = findViewById(R.id.Female);
 
+        /**
+         * @RadioGroup
+         * Essentially an icon that shows whether you chose male or female as your gender
+         */
         male.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,6 +201,10 @@ public class CreateAccount extends AppCompatActivity {
             }
         });
 
+        /**
+         * @RadioGroup
+         * Essentially an icon that shows whether you chose male or female as your gender
+         */
         female.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,6 +219,9 @@ public class CreateAccount extends AppCompatActivity {
 
         view_or_not = findViewById(R.id.view_or_not);
 
+        /**
+         * When clicked on, sets the password to being unhidden.
+         */
         view_or_not.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -221,6 +257,10 @@ public class CreateAccount extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String email, password, day, month, year, firstName, lastname;
+                /**
+                 * @Edittext
+                 * Gets the String values from the various EditTexts
+                 */
                 email = String.valueOf(Email.getText().toString().trim());
                 password = String.valueOf(Password.getText().toString().trim());
                 day = String.valueOf(Day.getText().toString().trim());
@@ -229,6 +269,9 @@ public class CreateAccount extends AppCompatActivity {
                 firstName = String.valueOf(FirstName.getText().toString().trim());
                 lastname = String.valueOf(LastName.getText().toString().trim());
 
+                /**
+                 * Checks if any of the Required EditTexts are empty.
+                 */
                 if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(day) || TextUtils.isEmpty(month) || TextUtils.isEmpty(year) || TextUtils.isEmpty(firstName) || TextUtils.isEmpty(lastname))
                 {
                     Toast.makeText(getApplicationContext(), "Fill out the required information", Toast.LENGTH_SHORT).show();
@@ -240,7 +283,11 @@ public class CreateAccount extends AppCompatActivity {
                     return;
                 }
 
-
+                /**
+                 * @FirebaseAuth
+                 * https://firebase.google.com/docs/auth/android/password-auth
+                 * Links an email & password to the Firebase servers
+                 */
                 fAuth.createUserWithEmailAndPassword(email, password)//, day, month, year, firstName, lastname)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -260,6 +307,9 @@ public class CreateAccount extends AppCompatActivity {
                                     FireBaseUser newUser = new FireBaseUser(email, day, month, year, firstName, lastname);
                                     node.child(userId).setValue(newUser);*/
 
+                                    /**
+                                     * @Hashmap - Creates a hashmap that will store information from the EditTexts into the documentReference
+                                     */
                                     DocumentReference documentReference = fStore.collection("MealUsers").document(userId);
                                     Map<String,Object> MealUser = new HashMap<>();
                                     MealUser.put("email",email);

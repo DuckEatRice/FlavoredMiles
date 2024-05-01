@@ -42,6 +42,11 @@ public class LogInScreen extends AppCompatActivity { // implements AdapterView.O
     EditText emailLogIn;
     EditText passwordLogIn;
 
+    /**
+     * @onStart()
+     * When the method onStart() for LogInScreen activity runs, it will check if a user is logged in
+     * If logged in, then intents to MainMenu class
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -68,10 +73,19 @@ public class LogInScreen extends AppCompatActivity { // implements AdapterView.O
         emailLogIn = findViewById(R.id.Email);
         passwordLogIn = findViewById(R.id.Password);
 
+        /**
+         * @SpannableString
+         * Makes it so that text is underlined
+         * https://stackoverflow.com/questions/5645789/how-to-set-underline-text-on-textview
+         */
         SpannableString SignUp  = new SpannableString("Sign Up");
         SignUp.setSpan(new UnderlineSpan(), 0, SignUp.length(), 0);
         signUp.setText(SignUp);
 
+        /**
+         * @Intent
+         * Intents to CreateAccount class
+         */
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +94,10 @@ public class LogInScreen extends AppCompatActivity { // implements AdapterView.O
             }
         });
 
+        /**
+         * @Intent
+         * Intents to MainActivity Class
+         */
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +106,9 @@ public class LogInScreen extends AppCompatActivity { // implements AdapterView.O
             }
         });
 
+        /**
+         * Sets EditText password to hidden, basically you won't be able to see the text.
+         */
         passwordLogIn.setTransformationMethod(new PasswordTransformationMethod());
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +129,11 @@ public class LogInScreen extends AppCompatActivity { // implements AdapterView.O
                     return;
                 }
 
+                /**
+                 * @FirebaseAuth
+                 * https://firebase.google.com/docs/auth/android/password-auth
+                 * Signs In with FirebaseAuth server
+                 */
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override

@@ -56,6 +56,10 @@ public class MealDetails extends AppCompatActivity {
         addCart = findViewById(R.id.mealdetailsAdd);
         backarrow = findViewById(R.id.mealdetailsBackArrow);
 
+        /**
+         * @Intent
+         * Intents to MainMenu class
+         */
         backarrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +68,10 @@ public class MealDetails extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * Receives intents sent from RecyclerAdapter
+         */
         Intent intent = getIntent();
         String MealName = intent.getStringExtra("MealName");
         String MealPicture = intent.getStringExtra("MealPicture");
@@ -75,6 +83,9 @@ public class MealDetails extends AppCompatActivity {
         String MealCalories = intent.getStringExtra("MealCalories");
         String MealIngredients = intent.getStringExtra("MealIngredients");
 
+        /**
+         * resourceId just uses the getIdentifier required documentation to get picture information, and uses getResources() to receive said information from the R file.
+         */
         int resourceId = getApplicationContext().getResources().getIdentifier(MealPicture, "drawable", getApplicationContext().getPackageName());
         if (resourceId != 0) {
             foodImage.setImageResource(resourceId); // Set the image to the ImageView
@@ -82,6 +93,9 @@ public class MealDetails extends AppCompatActivity {
             foodImage.setImageResource(R.drawable.imagenotfound);
         }
 
+        /**
+         * Setting the necessary TextViews to make things look good
+         */
         mealName.setText(MealName);
         mealRating.setText(MealRating);
         mealPrice.setText("$" + MealPrice);
@@ -93,6 +107,9 @@ public class MealDetails extends AppCompatActivity {
         final int[] quantity = {0};
         quantity[0]++;
 
+        /**
+         * Essentially, when quantity is increased, calories, price, and everything affected by quantity is increased.
+         */
         AddQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,6 +130,9 @@ public class MealDetails extends AppCompatActivity {
             }
         });
 
+        /**
+         * When quantity decreases, calories, price, and everything affected by quantity is decreased.
+         */
         SubtractQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,6 +155,10 @@ public class MealDetails extends AppCompatActivity {
             }
         });
 
+        /**
+         * @Intent
+         * When addCart is clicked on intents an ArrayList, "cartItems" over to CartActivity class
+         */
         addCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
