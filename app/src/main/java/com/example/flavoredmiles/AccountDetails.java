@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AccountDetails extends AppCompatActivity {
 
@@ -22,8 +21,12 @@ public class AccountDetails extends AppCompatActivity {
     TextView accountBirthday;
     TextView accountUserID;
     TextView LargeName;
-    ImageView lockedicon;
     ImageView backarrow;
+    View signoutView;
+    TextView accSignOut;
+    ImageView signoutIcon;
+
+    FirebaseAuth auth;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,13 +50,15 @@ public class AccountDetails extends AppCompatActivity {
         String fakeUser = userID.substring(0, length/2);
 
         accountName = findViewById(R.id.accountName);
-        accountEmail = findViewById(R.id.accountEmail);
-        accountPassword = findViewById(R.id.accountPassword);
-        accountLanguage = findViewById(R.id.accountLanguage);
-        accountBirthday  = findViewById(R.id.accountBirthday);
-        accountUserID = findViewById(R.id.accountUserId);
+        accountEmail = findViewById(R.id.accEmail);
+        accountPassword = findViewById(R.id.accPassword);
+        accountLanguage = findViewById(R.id.accLanguage);
+        accountBirthday  = findViewById(R.id.accBirthday);
+        signoutView = findViewById(R.id.view25);
+        accSignOut = findViewById(R.id.accSignOut);
+        //accountUserID = findViewById(R.id.accountUserId);
         LargeName = findViewById(R.id.LargeName);
-        lockedicon = findViewById(R.id.LockedIcon);
+        signoutIcon = findViewById(R.id.LockedIcon);
         backarrow = findViewById(R.id.accountBackArrow);
 
         accountName.setText(" " + firstName + " " + lastName);
@@ -61,18 +66,8 @@ public class AccountDetails extends AppCompatActivity {
         accountPassword.setText(" " + "*********");
         accountLanguage.setText(" " + "English, US");
         accountBirthday.setText(" " + month + " / " + day + " / " + year);
-        accountUserID.setText(" " + fakeUser);
+        //accountUserID.setText(" " + fakeUser);
         LargeName.setText(" " + firstName + " " + lastName);
-
-        /**
-         * If user wants to see their full userID, then if clicked on, will show proper information.
-         */
-        lockedicon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), userID, Toast.LENGTH_SHORT).show();
-            }
-        });
 
         /**
          * @Intent
@@ -85,6 +80,37 @@ public class AccountDetails extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+        signoutIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        signoutView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        accSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
     }
 }

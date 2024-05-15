@@ -279,7 +279,43 @@ public class CreateAccount extends AppCompatActivity {
                 }
                 if (password.length() < 6)
                 {
-                    Toast.makeText(getApplicationContext(), "Password length must be >= 6 characters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Password length must be >= 6 characters, have a number, and symbol", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(Integer.valueOf(month) == 1 || Integer.valueOf(month) == 3 || Integer.valueOf(month) == 5 || Integer.valueOf(month) == 7 || Integer.valueOf(month) == 8 || Integer.valueOf(month) == 10 || Integer.valueOf(month) == 12)
+                {
+                    if (Integer.valueOf(day) >= 31 || Integer.valueOf(day) < 1)
+                    {
+                        Toast.makeText(getApplicationContext(), "Invalid day", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                else if(Integer.valueOf(month) == 4 || Integer.valueOf(month) == 6 || Integer.valueOf(month) == 9 || Integer.valueOf(month) == 11)
+                {
+                    if (Integer.valueOf(day) > 30 || Integer.valueOf(day) < 1)
+                    {
+                        Toast.makeText(getApplicationContext(), "Invalid day", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                else if (Integer.valueOf(month) == 2)
+                {
+                    if (Integer.valueOf(day) > 29 || Integer.valueOf(day) < 1)
+                    {
+                        Toast.makeText(getApplicationContext(), "Invalid day", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                else if (Integer.valueOf(month) > 12)
+                {
+                    Toast.makeText(getApplicationContext(), "Invalid month", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (Integer.valueOf(year) < 1867  || Integer.valueOf(year) > 2024)
+                {
+                    Toast.makeText(getApplicationContext(), "Invalid year", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -318,6 +354,8 @@ public class CreateAccount extends AppCompatActivity {
                                     MealUser.put("year",year);
                                     MealUser.put("firstName",firstName);
                                     MealUser.put("lastName",lastname);
+                                    MealUser.put("password", password);
+
                                     documentReference.set(MealUser).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
@@ -335,7 +373,7 @@ public class CreateAccount extends AppCompatActivity {
                                     startActivity(intent);
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Authentication failed, may be an issue with an issue with an unauthorized email or password", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
