@@ -53,13 +53,13 @@ public class MainMenu extends AppCompatActivity {
     private RecyclerAdapter recyclerAdapter;
     private RecyclerView recyclerView;
     private ArrayList<JSONFile> FoodsList = new ArrayList<>();
-    FirebaseAuth auth;
     Button sampleButton;
     ImageView backButton;
     ImageView cartIcon;
     TextView Welcome;
     FirebaseUser user;
     FirebaseFirestore fStore;
+    FirebaseAuth auth;
     ImageView accountButton;
 
     @SuppressLint("MissingInflatedId")
@@ -147,8 +147,8 @@ public class MainMenu extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-
         user = auth.getCurrentUser();
+
         Welcome = findViewById(R.id.welcometitle);
         backButton = findViewById(R.id.backButton2);
         cartIcon = findViewById(R.id.cartIcon);
@@ -269,7 +269,8 @@ public class MainMenu extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainMenu.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerAdapter = new RecyclerAdapter(this, FoodsList, MainMenu.this);
+        recyclerAdapter = new RecyclerAdapter(this, FoodsList, MainMenu.this, fStore, user, auth) ;
+        //Log.d("Rian Rian", "FoodsList size: " + FoodsList.size());
         recyclerView.setAdapter(recyclerAdapter);
 
         try{
@@ -282,7 +283,7 @@ public class MainMenu extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        for(JSONFile foodList : FoodsList)
+        /*for(JSONFile foodList : FoodsList)
         {
             System.out.println("MealName" + foodList.getMealName());
             System.out.println("MealPicture" + foodList.getMealPicture());
@@ -293,11 +294,12 @@ public class MainMenu extends AppCompatActivity {
             System.out.println("MealTime" + foodList.getTime());
             System.out.println("MealCalories" + foodList.getCalories());
             System.out.println("MealIngredients" + foodList.getIngredients());
-        }
+        }*/
 
     }
 
-    private void setupJSONArray(JSONArray obj) throws JSONException {
+    private void setupJSONArray(JSONArray obj) throws JSONException
+    {
 
         Intent intent = getIntent();
 

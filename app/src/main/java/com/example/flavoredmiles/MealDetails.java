@@ -1,9 +1,11 @@
 package com.example.flavoredmiles;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Picture;
 import android.hardware.camera2.TotalCaptureResult;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -13,7 +15,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.w3c.dom.Document;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.jar.Attributes;
 
 public class MealDetails extends AppCompatActivity {
@@ -32,6 +46,10 @@ public class MealDetails extends AppCompatActivity {
     ImageView SubtractQuantity;
     ImageView addCart;
     ImageView backarrow;
+    FirebaseFirestore firestore;
+    FirebaseAuth fAuth;
+    FirebaseUser user;
+    DocumentReference documentReference;
 
     ArrayList<CartItem> cartItems = new ArrayList<>();
 
@@ -40,6 +58,10 @@ public class MealDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_details);
+
+        firestore = FirebaseFirestore.getInstance();
+        fAuth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         foodImage = findViewById(R.id.mealdetailsImage);
         mealName = findViewById(R.id.mealdetailName);
@@ -162,18 +184,45 @@ public class MealDetails extends AppCompatActivity {
         addCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String quantityNumber = String.valueOf(quantity[0]);
-                CartItem cartItem = new CartItem(MealName, MealPicture, MealPrice, quantityNumber);
-                cartItems.add(cartItem);
 
-                Intent intent1 = new Intent(getApplicationContext(), CartActivity.class);
-                intent1.putParcelableArrayListExtra("cartList", cartItems); //issue
-                startActivity(intent1);
+                if (user != null)
+                {
+                    String quantityNumber = String.valueOf(quantity[0]);
+                    double price = Double.valueOf(MealPrice);
+                    double total = quantity[0] * price;
+                    String result = String.format("%.2f", total);
 
-                Toast.makeText(getApplicationContext(), "Added to cart!", Toast.LENGTH_SHORT).show();
+                    /**
+                     * @Hashmap - Creates a hashmap that will store information from the EditTexts into the documentReference
+                     */
 
+                    DocumentReference documentReference = firestore.collection("MealUsers").document(user.getUid()).collection("MealStoring").document(MealName);
+                    Map<String, Object> Meals = new HashMap<>();
+                    Meals.put("MealName", MealName);
+                    Meals.put("MealPicture", MealPicture);
+                    Meals.put("MealPrice", result);
+                    Meals.put("quantity", quantityNumber);
 
-                //Toast.makeText(getApplicationContext(), "Doesn't work at the moment :)", Toast.LENGTH_SHORT).show();
+                    documentReference.set(Meals).addOnSuccessListener(new OnSuccessListener<Void>()
+                    {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getApplicationContext(), "Added to cart!", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), "Cart failure.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "User not signed in.", Toast.LENGTH_SHORT).show();
+                    Intent intent1 = new Intent(getApplicationContext(), MainMenu.class);
+                    startActivity(intent1);
+                }
+
             }
         });
 

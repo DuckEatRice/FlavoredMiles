@@ -1,5 +1,7 @@
 package com.example.flavoredmiles;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,19 +16,47 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.google.gson.Gson;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class CartActivity extends AppCompatActivity {
+
+public class CartActivity extends AppCompatActivity{
 
     //private ActivityCartBinding binding;
     private RecyclerView cartRecyclerView;
     private CartAdapter cartAdapter;
     ArrayList<CartItem> cartItemsArrayList = new ArrayList<>();
     ImageView cartBackArrow;
+    FirebaseUser user;
+    FirebaseFirestore fireStore;
+    FirebaseAuth auth;
+
+    TextView SubTotal;
+    TextView Total;
+    TextView Tax;
+
+    double totalPrice = 0.0;
+
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -34,57 +64,77 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("cart_items", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        fireStore = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        SubTotal = findViewById(R.id.SubTotal);
+        Total = findViewById(R.id.Total);
+        Tax = findViewById(R.id.TotalTax);
+
+        if (user != null)
+        {
+            CollectionReference cartRef = fireStore.collection("MealUsers").document(user.getUid()).collection("MealStoring");
+
+            cartRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @SuppressLint("NotifyDataSetChanged")
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots)
+                {
+                    cartItemsArrayList.clear();
+                    for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments())
+                    {
+                        String MealName = documentSnapshot.getString("MealName");
+                        String MealPicture = documentSnapshot.getString("MealPicture");
+                        String MealPrice = documentSnapshot.getString("MealPrice");
+                        String quantity = documentSnapshot.getString("quantity");
+
+                        Log.d("success", MealName + ", " + MealPicture + ", " + MealPrice + ", " + quantity + ".");
+
+                        //CartItem cartItem = new CartItem(MealName, MealPicture, MealPrice, quantity);
+
+                        //Log.d("Rian Rian", cartItem.getMealName());
+
+                        cartItemsArrayList.add(new CartItem(MealName, MealPicture, MealPrice, quantity));
+
+                        Log.d("Rian Rian haha", String.valueOf(cartItemsArrayList.size()));
+                    }
+                    cartAdapter.notifyDataSetChanged();
+
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("CartFailure", "Error Fetching Items", e);
+                        }
+                    });
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Not Signed In bro", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
+            startActivity(intent);
+        }
+
 
         cartBackArrow = findViewById(R.id.cartBackArrowhi);
+
         cartRecyclerView = findViewById(R.id.cartRecyclerView); // Replace with your RecyclerView ID
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(CartActivity.this);
         cartRecyclerView.setLayoutManager(layoutManager);
 
-        /**
-         * @Intent
-         * Receives ArrayList from MealDetails
-         */
-        Intent intent = getIntent();
-        ArrayList<CartItem> cartItems = intent.getParcelableArrayListExtra("cartList"); //line 27 issue
-        ArrayList<CartItem> cartItemsfromRecyclerAdapter = intent.getParcelableArrayListExtra("cartListfromRecyclerAdapter");
+        cartAdapter = new CartAdapter(cartItemsArrayList, CartActivity.this);
+        //Log.d("Rian Rian", "cartItems size: " + cartItemsArrayList.size());
+        cartRecyclerView.setAdapter(cartAdapter);
+
+        Thread t = new Thread(()-> {
+
+        });
+        t.start();
 
 
-        if ((cartItems == null || cartItems.isEmpty())) {
-            //Toast.makeText(getApplicationContext(), "Your cart is empty.", Toast.LENGTH_SHORT).show();
-            // You can also show a different layout here
-        } else
-        {
-            Log.d("DEBUGGINGRAHH", "cartItems size: " + cartItems.size());
-            /*for (int j = 0; j < cartItems.size(); j++) {
-                cartItemsArrayList.add(new CartItem(cartItems.get(j).getMealName(), cartItems.get(j).getImageName(), cartItems.get(j).getMealPrice(), cartItems.get(j).getQuantity()));
-            }*/
-            //Toast.makeText(getApplicationContext(), "Working?", Toast.LENGTH_SHORT).show();
-            /**
-             * Depending on the if statement, the CartActivity will set CartAdapter ArrayList differently
-             */
-            cartAdapter = new CartAdapter(cartItems, this, CartActivity.this);
-            cartRecyclerView.setAdapter(cartAdapter);
-        }
-        if ((cartItemsfromRecyclerAdapter == null || cartItemsfromRecyclerAdapter.isEmpty()))
-        {
-            //Toast.makeText(getApplicationContext(), "Your cart is empty.", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            //Log.d("DEBUGGINGRAHH", "cartItems size: " + cartItems.size());
-            /*for (int j = 0; j < cartItemsfromRecyclerAdapter.size(); j++) {
-                cartItemsArrayList.add(new CartItem(cartItemsfromRecyclerAdapter.get(j).getMealName(), cartItemsfromRecyclerAdapter.get(j).getImageName(), cartItemsfromRecyclerAdapter.get(j).getMealPrice(), cartItemsfromRecyclerAdapter.get(j).getQuantity()));
-            }*/
-            //Toast.makeText(getApplicationContext(), "Working?", Toast.LENGTH_SHORT).show();
 
-            /**
-             * Depending on the if statement, the CartActivity will set CartAdapter ArrayList differently
-             */
-            cartAdapter = new CartAdapter(cartItemsfromRecyclerAdapter, this, CartActivity.this);
-            cartRecyclerView.setAdapter(cartAdapter);
-        }
 
         /**
          * @Intent
@@ -99,11 +149,61 @@ public class CartActivity extends AppCompatActivity {
         });
     }
 
-    /*public void saveCartItems(SharedPreferences sharedPreferences, SharedPreferences.Editor editor, ArrayList<CartItem> list)
+    public interface CartItemQuantityListener
     {
-         sharedPreferences = getSharedPreferences("cart_items", MODE_PRIVATE);
-         editor = sharedPreferences.edit();
-         editor.putString("cart_items_list", String.valueOf(list));
-    }*/
+        void onCartItemQuantityListener(int position, int newQuantity);
+    }
+
+    public void onCartItemQuantityChangeMinus(int position, int newQuantity)
+    {
+        updatePriceandSummary2(position, newQuantity);
+    }
+
+    private void updatePriceandSummary2(int position, int newQuantity)
+    {
+        CartItem cartItem = cartItemsArrayList.get(position);
+
+        // Calculate price change for this item (old quantity * price - new quantity * price)
+        double priceChange = (newQuantity - Integer.parseInt(cartItem.getQuantity())) * Double.parseDouble(cartItem.getMealPrice());
+
+
+        totalPrice -= priceChange;
+
+        Total.setText("$" + String.format("%.2f", totalPrice));
+    }
+
+
+
+    public void onCartItemQuantityChange(int position, int newQuantity)
+    {
+        updatePriceandSummary(position, newQuantity);
+    }
+
+    private void updatePriceandSummary(int position, int newQuantity)
+    {
+        CartItem cartItem = cartItemsArrayList.get(position);
+
+        // Calculate price change for this item (old quantity * price - new quantity * price)
+        double priceChange = (newQuantity - Integer.parseInt(cartItem.getQuantity())) * Double.parseDouble(cartItem.getMealPrice());
+
+
+        totalPrice += priceChange;
+
+        Total.setText("$" + String.format("%.2f", totalPrice));
+    }
+
+    private double setTotalPrice()
+    {
+
+
+
+        for (CartItem cartItem : cartItemsArrayList)
+        {
+            int quantity = Integer.parseInt(cartItem.getQuantity());
+
+        }
+        return totalPrice;
+    }
+
 
 }

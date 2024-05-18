@@ -242,8 +242,8 @@ public class CreateAccount extends AppCompatActivity {
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-        Day = findViewById(R.id.Days);
-        Month = findViewById(R.id.Months);
+        Day = findViewById(R.id.Months);
+        Month = findViewById(R.id.Days);
         Year = findViewById(R.id.Years);
         FirstName = findViewById(R.id.FirstName);
         LastName = findViewById(R.id.LastName);
@@ -269,6 +269,16 @@ public class CreateAccount extends AppCompatActivity {
                 firstName = String.valueOf(FirstName.getText().toString().trim());
                 lastname = String.valueOf(LastName.getText().toString().trim());
 
+                boolean hasNumbersorSymbols = false;
+                for(char c : password.toCharArray())
+                {
+                    if (Character.isDigit(c))
+                    {
+                        hasNumbersorSymbols = true;
+                        break;
+                    }
+                }
+
                 /**
                  * Checks if any of the Required EditTexts are empty.
                  */
@@ -277,9 +287,9 @@ public class CreateAccount extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Fill out the required information", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (password.length() < 6)
+                if (password.length() < 6 || !hasNumbersorSymbols)
                 {
-                    Toast.makeText(getApplicationContext(), "Password length must be >= 6 characters, have a number, and symbol", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Password length must be > 6 characters, have a number, and symbol", Toast.LENGTH_LONG).show();
                     return;
                 }
 

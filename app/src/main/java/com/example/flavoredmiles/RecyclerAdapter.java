@@ -23,17 +23,31 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flavoredmiles.JSONFile;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodViewHolder>
 {
     private Context context;
     private  ArrayList<JSONFile> javaList = new ArrayList<>();
     Activity activity;
+    FirebaseFirestore firestore;
+    FirebaseUser user;
+    FirebaseAuth auth;
 
-    public RecyclerAdapter(Context context, ArrayList javaList, Activity activity)
+    public RecyclerAdapter(Context context, ArrayList javaList, Activity activity, FirebaseFirestore firestore, FirebaseUser user, FirebaseAuth auth)
     {
+        this.firestore = firestore;
+        this.user = user;
+        this.auth = auth;
         this.context = context;
         this.javaList = javaList;
         this.activity = activity;
@@ -113,13 +127,39 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodVi
 
                 Toast.makeText(getApplicationContext(), "Added to cart!", Toast.LENGTH_SHORT).show();*/
 
-                CartItem cartItem = new CartItem(javaList.get(position).getMealName(), javaList.get(position).getMealPicture(),javaList.get(position).getPrice(), "1");
-                cartItems.add(cartItem);
+                if (user != null)
+                {
 
-                Intent intent = new Intent(context.getApplicationContext(), CartActivity.class);
-                intent.putParcelableArrayListExtra("cartListfromRecyclerAdapter", cartItems);
-                Toast.makeText(activity.getApplicationContext(), "Added to Cart!", Toast.LENGTH_SHORT).show();
-                context.startActivity(intent);
+                    /**
+                     * @Hashmap - Creates a hashmap that will store information from the EditTexts into the documentReference
+                     */
+
+                    DocumentReference documentReference = firestore.collection("MealUsers").document(user.getUid()).collection("MealStoring").document(javaList.get(position).getMealName());
+                    Map<String, Object> Meals = new HashMap<>();
+                    Meals.put("MealName", javaList.get(position).getMealName());
+                    Meals.put("MealPicture", javaList.get(position).getMealPicture());
+                    Meals.put("MealPrice", javaList.get(position).getPrice());
+                    Meals.put("quantity", "1");
+
+                    documentReference.set(Meals).addOnSuccessListener(new OnSuccessListener<Void>()
+                    {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(context.getApplicationContext(), "Added to cart!", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(context.getApplicationContext(), "Cart failure.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else
+                {
+                    Toast.makeText(context.getApplicationContext(), "User not signed in.", Toast.LENGTH_SHORT).show();
+                    Intent intent1 = new Intent(context.getApplicationContext(), MainMenu.class);
+                    context.startActivity(intent1);
+                }
 
             }
         });

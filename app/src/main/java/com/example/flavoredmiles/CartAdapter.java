@@ -19,19 +19,25 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> implements CartActivity.CartItemQuantityListener {
 
     private ArrayList<CartItem> cartItems;
     private Context context;
     Activity activity;
 
-    public CartAdapter(ArrayList<CartItem> cartItems, Context context, Activity activity) {
+
+    public CartAdapter(ArrayList<CartItem> cartItems, Activity activity) {
         this.cartItems = cartItems;
-        this.context = context;
+        //this.context = context;
         this.activity = activity;
-        Log.d("DEBUGGINGRAHH", "CartAdapter created :)))");
-        System.out.println(cartItems.size());
-        System.out.println(cartItems.get(0).mealName);
+
+        //Log.d("Ethan", cartItems.get(0).getMealName());
+    }
+
+    @Override
+    public void onCartItemQuantityListener(int position, int newQuantity) {
+        cartItems.get(position).setQuantity(String.valueOf(newQuantity));
+        ((CartActivity) activity).onCartItemQuantityChange(position, newQuantity);
     }
 
     public class CartViewHolder extends RecyclerView.ViewHolder {
@@ -62,12 +68,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public CartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Inflate the layout for each cart item (e.g., cart_item.xml)
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_cart_cardview, parent, false);
-        Log.d("DEBUGGINGRAHH", "Inflated view: " + view);
+        System.out.println("bound2");
         return new CartViewHolder(view);
     }
 
     public void onBindViewHolder(CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
         System.out.println("bound");
+        Log.d("Rian Rian bubi", "Binding item: " + cartItems.get(position).getMealName());
+        Log.d("Rian Rian boo bo", String.valueOf(cartItems.size()));
         //CartItem cartItem = cartItems.get(position);
 
         /**
@@ -83,11 +91,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         String result = String.format("%.2f", RealPrice);
         holder.cartRealPrice.setText("$" + result);
 
+        int currentQuantity = Integer.parseInt(cartItems.get(position).getQuantity());
+        holder.quantity.setText(String.valueOf(currentQuantity));
+
         /**
          * resourceId just uses the getIdentifier required documentation to get picture information, and uses getResources() to receive said information from the R file.
          */
-        int resourceId = context.getResources().getIdentifier(cartItems.get(position).getImageName(), "drawable", holder.itemView.getContext().getPackageName());
-        Log.d("HELP ME PLEASE RAHHH", holder.itemView.getContext().getPackageName());
+        int resourceId = activity.getResources().getIdentifier(cartItems.get(position).getImageName(), "drawable", holder.itemView.getContext().getPackageName());
 
         if (resourceId != 0) {
             holder.mealPicture.setImageResource(resourceId); // Set the image to the ImageView
@@ -113,6 +123,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 double total = quantityQuantity[0] * intPrice;
                 String totalTotal = String.format("%.2f", total);
                 holder.cartRealPrice.setText("$" + totalTotal);
+
+                ((CartActivity) activity).onCartItemQuantityChange(position, quantityQuantity[0]);
             }
         });
 
@@ -132,10 +144,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     double total = quantityQuantity[0] * intPrice;
                     String totalTotal = String.format("%.2f", total);
                     holder.cartRealPrice.setText("$" + totalTotal);
+
+                    ((CartActivity) activity).onCartItemQuantityChangeMinus(position, quantityQuantity[0]);
                 }
                 else
                 {
-                    Toast.makeText(context.getApplicationContext(), "You cannot subtract any further.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity.getApplicationContext(), "You cannot subtract any further.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -155,9 +169,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return cartItems.size();
     }
 
-    /*public void removeItem(int position)
+    /*public int getPrice()
     {
-        cartItems.remove(position);
-        notifyItemRemoved(position);
+        double subTotal;
+        double Total;
     }*/
+
+
+
+
 }

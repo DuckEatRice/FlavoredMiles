@@ -93,7 +93,7 @@
     "MealDescription": "Unveiling a tropical escape in a glass, our Mango Smoothie is a symphony of sunshine and refreshment. Sun-ripened mangoes, bursting with juicy sweetness, form the base of this delightful beverage. Creamy yogurt adds a touch of tang and velvety texture, creating a luxurious mouthfeel. A hint of citrus awakens the senses, while a whisper of honey accentuates the mango's natural sweetness. This vibrant concoction is a perfect pick-me-up, a delightful afternoon treat, or a healthy way to indulge your sweet tooth. Escape the ordinary and embrace the tropics with every sip of our irresistible Mango Smoothie.",
     "MealType": "Drink",
     "MealPrice": "5.99",
-    "MealRating": "4.5",
+    "MealRating": "4.5/5",
     "MealTime": "5 min",
     "MealCalories": "200",
     "MealIngredients": "Pineapple, mango, banana, coconut water"
@@ -104,7 +104,7 @@
     "MealDescription": "This refreshing beverage offers a captivating contrast of color and taste. A vibrant emerald tide of meticulously whisked matcha tea forms the base, boasting a smooth, vegetal depth. Hints of natural sweetness peek through, perfectly complementing the subtle earthiness. A layer of chilled milk, light and airy, creates a creamy canvas that tempers the intensity of the matcha, inviting you to indulge with every sip. Finished with a dusting of green tea powder, this iced latte is a visual and textural delight, offering a cool and invigorating escape from the ordinary.",
     "MealType": "Drink",
     "MealPrice": "4.99",
-    "MealRating": "4.7",
+    "MealRating": "4.7/5",
     "MealTime": "5 min",
     "MealCalories": "150",
     "MealIngredients": "Matcha powder, milk, sweetener (optional)"
@@ -115,7 +115,7 @@
     "MealDescription": "This refreshing cocktail is a timeless testament to the power of simplicity. A symphony of cool and bright flavors unfolds with each sip. The foundation is built upon premium white rum, its smooth warmth balanced by the zest of freshly squeezed limes. Muddled mint leaves release their invigorating aroma, intertwining with a touch of sugar for a subtle sweetness. Finally, a splash of club soda adds a touch of effervescence, creating a light and inviting finish. This iconic concoction is a testament to the perfect harmony achieved with just a few well-chosen ingredients",
     "MealType": "Drink",
     "MealPrice": "7.99",
-    "MealRating": "4.8",
+    "MealRating": "4.8/5",
     "MealTime": "10 min",
     "MealCalories": "180",
     "MealIngredients": "Mint leaves, lime juice, sugar, soda water, rum (optional)"
@@ -126,7 +126,7 @@
     "MealDescription": "Unveiled in a comforting embrace of warmth, our Vanilla Chai Latte is a captivating melody of spiced and sweet. The foundation rests upon a canvas of rich, frothed milk, its smooth texture the perfect stage for the star of the show: a captivating blend of chai spices. Cardamom, cinnamon, and ginger weave their magic, their aromatic notes swirling in perfect harmony. A touch of vanilla adds a touch of creamy sweetness, creating a delightful counterpoint to the chai's exotic warmth. This soothing symphony is presented in a tall glass, inviting you to savor the captivating dance of flavors in every sip. Indulge in the comforting embrace of our Vanilla Chai Latte, a soul-warming experience that will leave you wanting more.",
     "MealType": "Drink",
     "MealPrice": "4.99",
-    "MealRating": "4.6",
+    "MealRating": "4.6/5",
     "MealTime": "5 min",
     "MealCalories": "250",
     "MealIngredients": "Chai tea concentrate, milk, vanilla syrup"
@@ -137,7 +137,7 @@
     "MealDescription": "This vibrant beverage is a tastebud adventure, bursting with the sweet and tangy essence of the exotic dragon fruit. Its vibrant magenta hue hints at the explosion of flavors within. The creamy base, made with fresh or frozen bananas and milk of your choice, offers a smooth and refreshing foundation. The star of the show, dragon fruit, adds a touch of floral sweetness perfectly balanced by the subtle citrus notes.\nFor a touch of tropical luxury, we've swirled in a hint of pineapple or mango, creating a symphony of sweet and tart flavors. This delightful smoothie is a perfect way to start your day, replenish your energy after a workout, or simply enjoy a taste of the tropics any time.",
     "MealType": "Drink",
     "MealPrice": "6.99",
-    "MealRating": "4.7",
+    "MealRating": "4.7/5",
     "MealTime": "5 min",
     "MealCalories": "220",
     "MealIngredients": "Dragon fruit, yogurt, honey, mango, pineapple"
@@ -148,7 +148,7 @@
     "MealDescription": "Indulge in the timeless elegance of our Café Latte. This meticulously crafted beverage features a bold shot of espresso layered with smooth, frothed milk, creating a symphony of textures and flavors. The rich, dark espresso forms the base, offering a robust and invigorating coffee experience. Silky smooth steamed milk complements the espresso's intensity, creating a harmonious balance of bitter and creamy. A touch of microfoam rests atop the beverage, adding a delightful textural element and a beautiful presentation. Savor the Café Latte, a perfect pick-me-up or a sophisticated accompaniment to any pastry or light meal.",
     "MealType": "Drink",
     "MealPrice": "3.99",
-    "MealRating": "4.5",
+    "MealRating": "4.5/5",
     "MealTime": "5 min",
     "MealCalories": "120",
     "MealIngredients": "Espresso, milk"
@@ -161,7 +161,7 @@
     "MealPrice": "7.99",
     "MealRating": "4.8/5",
     "MealTime": "40 min",
-    "MealCalories": "600 calories",
+    "MealCalories": "600",
     "MealIngredients": "Chocolate, butter, sugar, eggs, flour, vanilla extract, vanilla ice cream, chocolate sauce"
   },
   {
@@ -172,7 +172,7 @@
     "MealPrice": "8.99",
     "MealRating": "4.7/5",
     "MealTime": "45 min",
-    "MealCalories": "500 calories",
+    "MealCalories": "500",
     "MealIngredients": "Ladyfingers, espresso, mascarpone cheese, eggs, sugar, cocoa powder, rum"
   },
   {
@@ -183,7 +183,7 @@
     "MealPrice": "6.99",
     "MealRating": "4.6/5",
     "MealTime": "50 min",
-    "MealCalories": "550 calories",
+    "MealCalories": "550",
     "MealIngredients": "Apples, sugar, flour, butter, cinnamon, nutmeg, lemon juice, pie crust, vanilla ice cream"
   }
 ]

@@ -55,6 +55,22 @@ public class CartItem implements Parcelable {
         return quantity;
     }
 
+    public void setMealName(String mealName) {
+        this.mealName = mealName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public void setMealPrice(String mealPrice) {
+        this.mealPrice = mealPrice;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public int describeContents() {
         return 0;
