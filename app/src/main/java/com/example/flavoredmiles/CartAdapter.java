@@ -1,21 +1,29 @@
 package com.example.flavoredmiles;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.media.Image;
-import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -24,6 +32,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     private ArrayList<CartItem> cartItems;
     private Context context;
     Activity activity;
+
+    FirebaseUser user;
+    FirebaseFirestore fireStore;
+    FirebaseAuth auth;
 
 
     public CartAdapter(ArrayList<CartItem> cartItems, Activity activity) {
@@ -68,7 +80,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public CartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Inflate the layout for each cart item (e.g., cart_item.xml)
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_cart_cardview, parent, false);
-        System.out.println("bound2");
+        //System.out.println("bound2");
         return new CartViewHolder(view);
     }
 
@@ -154,13 +166,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         });
 
-        /*holder.RedCross.setOnClickListener(new View.OnClickListener() {
+        holder.RedCross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int itemPosition = (int) view.getTag();
-                removeItem(itemPosition);
+                notifyItemChanged(position);
+                removeItem(position);
             }
-        });*/
+        });
+
+
 
         // Set the image if you included it in CartItem (optional)
     }
@@ -175,6 +189,38 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         double Total;
     }*/
 
+    public void removeItem(int bubi)
+    {
+        fireStore = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        Log.d("bubi", "" + bubi);
+        Log.d("bubi bubi", "" + cartItems.size());
+
+
+        //((CartActivity) activity).totalPrice -= bubi;
+
+        DocumentReference documentReference = fireStore.collection("MealUsers").document(user.getUid()).collection("MealStoring").document(cartItems.get(bubi).getMealName());
+
+        documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(activity.getApplicationContext(), "Successfully deleted.", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(activity.getApplicationContext(), "Successfully deleted.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //cartItems.remove(bubi);
+        //notifyItemRemoved(bubi);
+
+        Intent intent = new Intent(activity.getApplicationContext(), CartActivity.class);
+        activity.startActivity(intent);
+    }
 
 
 

@@ -54,8 +54,12 @@ public class CartActivity extends AppCompatActivity{
     TextView SubTotal;
     TextView Total;
     TextView Tax;
+    TextView PlaceOrder;
 
-    double totalPrice = 0.0;
+
+    double totalPrice;
+    double subtotalPrice;
+    double taxSubTotal;
 
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
@@ -71,6 +75,8 @@ public class CartActivity extends AppCompatActivity{
         SubTotal = findViewById(R.id.SubTotal);
         Total = findViewById(R.id.Total);
         Tax = findViewById(R.id.TotalTax);
+        PlaceOrder = findViewById(R.id.cartPlaceOrderButton);
+
 
         if (user != null)
         {
@@ -101,6 +107,18 @@ public class CartActivity extends AppCompatActivity{
                     }
                     cartAdapter.notifyDataSetChanged();
 
+                    if (!cartItemsArrayList.isEmpty())
+                    {
+                        subtotalPrice = setSubTotalPrice();
+                        SubTotal.setText("$" + String.format("%.2f", subtotalPrice));
+
+                        taxSubTotal = setTaxPrice(subtotalPrice);
+                        Tax.setText("$" + String.format("%.2f", taxSubTotal));
+
+                        totalPrice = subtotalPrice + taxSubTotal;
+                        Total.setText("$" + String.format("%.2f",totalPrice));
+                    }
+
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
@@ -128,12 +146,6 @@ public class CartActivity extends AppCompatActivity{
         //Log.d("Rian Rian", "cartItems size: " + cartItemsArrayList.size());
         cartRecyclerView.setAdapter(cartAdapter);
 
-        Thread t = new Thread(()-> {
-
-        });
-        t.start();
-
-
 
 
         /**
@@ -147,6 +159,54 @@ public class CartActivity extends AppCompatActivity{
                 startActivity(intent1);
             }
         });
+
+        if (PlaceOrder != null)
+        {
+            PlaceOrder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (user != null) {
+                        CollectionReference cartRef = fireStore.collection("MealUsers").document(user.getUid()).collection("MealStoring");
+
+                        cartRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                                for (int i = 0; i < queryDocumentSnapshots.size(); i++) { //line 177
+                                    DocumentSnapshot documentSnapshot = queryDocumentSnapshots.getDocuments().get(i);
+                                    String mealName = documentSnapshot.getString("MealName");
+
+                                    fireStore.collection("MealUsers").document(user.getUid()).collection("MealStoring").document(mealName)
+                                            .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    Log.wtf("Ethan C", "Succesfully ordered");
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(getApplicationContext(), "Not Nice!", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+
+                                    Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                                    startActivity(intent);
+                                }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getApplicationContext(), "Failed to remove", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Null Place Order", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public interface CartItemQuantityListener
@@ -161,15 +221,27 @@ public class CartActivity extends AppCompatActivity{
 
     private void updatePriceandSummary2(int position, int newQuantity)
     {
-        CartItem cartItem = cartItemsArrayList.get(position);
+        for (CartItem item : cartItemsArrayList)
+        {
+            int quantity = Integer.parseInt(item.getQuantity());
+            double price = Double.parseDouble(item.getMealPrice());
+            totalPrice -= (quantity) * price;
+        }
 
-        // Calculate price change for this item (old quantity * price - new quantity * price)
-        double priceChange = (newQuantity - Integer.parseInt(cartItem.getQuantity())) * Double.parseDouble(cartItem.getMealPrice());
+        if(totalPrice >= 0)
+        {
+            Total.setText("$" + String.format("%.2f", totalPrice));
 
+            double tax = setTaxPrice(totalPrice);
+            Tax.setText("$" + String.format("%.2f", tax));
 
-        totalPrice -= priceChange;
-
-        Total.setText("$" + String.format("%.2f", totalPrice));
+            double subTotal = totalPrice - tax;
+            SubTotal.setText("$" + String.format("%.2f", subTotal));
+        }
+        else
+        {
+            Total.setText("$0.00");
+        }
     }
 
 
@@ -181,29 +253,64 @@ public class CartActivity extends AppCompatActivity{
 
     private void updatePriceandSummary(int position, int newQuantity)
     {
-        CartItem cartItem = cartItemsArrayList.get(position);
-
-        // Calculate price change for this item (old quantity * price - new quantity * price)
-        double priceChange = (newQuantity - Integer.parseInt(cartItem.getQuantity())) * Double.parseDouble(cartItem.getMealPrice());
-
-
-        totalPrice += priceChange;
+        for (CartItem item : cartItemsArrayList)
+        {
+            int quantity = Integer.parseInt(item.getQuantity());
+            double price = Double.parseDouble(item.getMealPrice());
+            totalPrice += quantity * price;
+        }
 
         Total.setText("$" + String.format("%.2f", totalPrice));
+
+        double tax = setTaxPrice(totalPrice);
+        Tax.setText("$" + String.format("%.2f", tax));
+
+        double subTotal = totalPrice - tax;
+        SubTotal.setText("$" + String.format("%.2f", subTotal));
     }
 
-    private double setTotalPrice()
+    private double setTaxPrice(double SubTotal)
     {
+        double tax = 0.0725;
+        double SubTotaltax = SubTotal * tax;
+        return SubTotaltax;
+    }
 
-
-
+    private double setSubTotalPrice()
+    {
+        double total = 0.0;
         for (CartItem cartItem : cartItemsArrayList)
         {
             int quantity = Integer.parseInt(cartItem.getQuantity());
-
+            double price = Double.parseDouble(cartItem.getMealPrice());
+            total += quantity * price;
+            Log.d("rian Rian", "loser" + total);
         }
-        return totalPrice;
+        return total;
     }
 
+    /*public void removeItem(int position)
+    {
+        fireStore = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
+        DocumentReference documentReference = fireStore.collection("MealUsers").document(user.getUid()).collection("MealStoring").document(cartItemsArrayList.get(position).getMealName());
+
+        documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(getApplicationContext(), "Successfully deleted.", Toast.LENGTH_SHORT).show();
+                cartItemsArrayList.remove(position);
+                cartAdapter.notifyItemRemoved(position);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Successfully deleted.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+        startActivity(intent);*/
 }

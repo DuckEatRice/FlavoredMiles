@@ -190,11 +190,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/PlaceOrder"
+        android:id="@+id/cartPlaceOrder"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/applycoupon_background"
+        android:visibility="invisible"
         android:gravity="center"
         android:text="Place Order"
         android:textColor="#FFFFFF"
@@ -203,5 +204,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/cartPlaceOrderButton"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="@color/red"
+        android:text="Place Order"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
