@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,10 +19,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -66,14 +63,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         public CartViewHolder(View itemView) {
             super(itemView);
 
-            mealName = itemView.findViewById(R.id.cartItemName); // Replace with your TextView IDs
-            mealPicture = itemView.findViewById(R.id.cartMealImage);
-            mealPrice = itemView.findViewById(R.id.cartItemPrice);
-            quantity = itemView.findViewById(R.id.cartItemQuantity);
-            cartRealPrice = itemView.findViewById(R.id.cartItemRealPrice);
-            cartAdd = itemView.findViewById(R.id.cartQuantityAdd);
-            cartSubtract = itemView.findViewById(R.id.cartQuantitySubtract);
-            RedCross = itemView.findViewById(R.id.redCross);
+            mealName = itemView.findViewById(R.id.MealCompletioncartItemName); // Replace with your TextView IDs
+            mealPicture = itemView.findViewById(R.id.MealCompletionMealImage);
+            mealPrice = itemView.findViewById(R.id.MealCompletionItemPrice);
+            quantity = itemView.findViewById(R.id.MealCompletionItemQuantity);
+            cartRealPrice = itemView.findViewById(R.id.MealCompletionItemRealPrice);
+            cartAdd = itemView.findViewById(R.id.MealCompletionQuantityAdd);
+            cartSubtract = itemView.findViewById(R.id.MealCompletionQuantitySubtract);
+            RedCross = itemView.findViewById(R.id.MealCompletionredCross);
         }
     }
 

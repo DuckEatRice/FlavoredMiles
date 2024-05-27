@@ -13,6 +13,12 @@
         android:theme="@style/Theme.FlavoredMiles"
         tools:targetApi="31">
         <activity
+            android:name=".MealCompletionAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".MealCompetionScreen"
+            android:exported="false" />
+        <activity
             android:name=".CartAdapter"
             android:exported="false" />
         <activity

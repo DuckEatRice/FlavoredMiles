@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -195,7 +196,6 @@ public class MealDetails extends AppCompatActivity {
                     /**
                      * @Hashmap - Creates a hashmap that will store information from the EditTexts into the documentReference
                      */
-
                     DocumentReference documentReference = firestore.collection("MealUsers").document(user.getUid()).collection("MealStoring").document(MealName);
                     Map<String, Object> Meals = new HashMap<>();
                     Meals.put("MealName", MealName);

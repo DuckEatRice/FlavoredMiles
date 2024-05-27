@@ -23,7 +23,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/cartMealImage"
+                android:id="@+id/MealCompletionMealImage"
                 android:layout_width="130dp"
                 android:layout_height="90dp"
                 android:layout_marginStart="6dp"
@@ -35,7 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/redCross"
+                android:id="@+id/MealCompletionredCross"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="316dp"
@@ -48,7 +48,7 @@
                 app:layout_constraintVertical_bias="0.05" />
 
             <TextView
-                android:id="@+id/cartItemName"
+                android:id="@+id/MealCompletioncartItemName"
                 android:layout_width="72dp"
                 android:layout_height="31dp"
                 android:layout_marginBottom="64dp"
@@ -64,7 +64,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/cartItemPrice"
+                android:id="@+id/MealCompletionItemPrice"
                 android:layout_width="72dp"
                 android:layout_height="31dp"
                 android:layout_marginBottom="32dp"
@@ -80,7 +80,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
-                android:id="@+id/cartQuantityAdd"
+                android:id="@+id/MealCompletionQuantityAdd"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginBottom="4dp"
@@ -91,7 +91,7 @@
                 app:srcCompat="@drawable/quantityadd" />
 
             <TextView
-                android:id="@+id/cartItemQuantity"
+                android:id="@+id/MealCompletionItemQuantity"
                 android:layout_width="28dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="160dp"
@@ -107,7 +107,7 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <ImageView
-                android:id="@+id/cartQuantitySubtract"
+                android:id="@+id/MealCompletionQuantitySubtract"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginBottom="4dp"
@@ -118,7 +118,7 @@
                 app:srcCompat="@drawable/quantitysubtract" />
 
             <TextView
-                android:id="@+id/cartItemRealPrice"
+                android:id="@+id/MealCompletionItemRealPrice"
                 android:layout_width="72dp"
                 android:layout_height="31dp"
                 android:layout_marginBottom="4dp"

@@ -97,10 +97,6 @@ public class CartActivity extends AppCompatActivity{
 
                         Log.d("success", MealName + ", " + MealPicture + ", " + MealPrice + ", " + quantity + ".");
 
-                        //CartItem cartItem = new CartItem(MealName, MealPicture, MealPrice, quantity);
-
-                        //Log.d("Rian Rian", cartItem.getMealName());
-
                         cartItemsArrayList.add(new CartItem(MealName, MealPicture, MealPrice, quantity));
 
                         Log.d("Rian Rian haha", String.valueOf(cartItemsArrayList.size()));
@@ -120,6 +116,7 @@ public class CartActivity extends AppCompatActivity{
                     }
 
                 }
+
             })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -134,6 +131,8 @@ public class CartActivity extends AppCompatActivity{
             Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
             startActivity(intent);
         }
+
+
 
 
         cartBackArrow = findViewById(R.id.cartBackArrowhi);
@@ -192,6 +191,11 @@ public class CartActivity extends AppCompatActivity{
                                     Intent intent = new Intent(getApplicationContext(), CartActivity.class);
                                     startActivity(intent);
                                 }
+                                Toast.makeText(getApplicationContext(), "Successfully Ordered!", Toast.LENGTH_LONG).show();
+
+                                Intent intent = new Intent(getApplicationContext(), MealCompetionScreen.class);
+                                intent.putParcelableArrayListExtra("CartItemList", cartItemsArrayList);
+                                startActivity(intent);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
