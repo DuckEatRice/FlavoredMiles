@@ -120,12 +120,12 @@ public class LogInScreen extends AppCompatActivity { // implements AdapterView.O
 
                 if (TextUtils.isEmpty(email))
                 {
-                    Toast.makeText(context, "Enter a valid email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter a valid email", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password))
                 {
-                    Toast.makeText(context, "Enter a valid password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter a valid password", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

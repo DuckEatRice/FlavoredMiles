@@ -68,18 +68,21 @@ public class CartActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
+        // Initialize Firebase and User references
         fireStore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
 
+        // Find view references
         SubTotal = findViewById(R.id.SubTotal);
         Total = findViewById(R.id.Total);
         Tax = findViewById(R.id.TotalTax);
         PlaceOrder = findViewById(R.id.cartPlaceOrderButton);
 
-
+        // Handle user signed in state
         if (user != null)
         {
+            // Get cart items from Firestore
             CollectionReference cartRef = fireStore.collection("MealUsers").document(user.getUid()).collection("MealStoring");
 
             cartRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -90,6 +93,7 @@ public class CartActivity extends AppCompatActivity{
                     cartItemsArrayList.clear();
                     for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments())
                     {
+                        // Extract item details from Firestore document
                         String MealName = documentSnapshot.getString("MealName");
                         String MealPicture = documentSnapshot.getString("MealPicture");
                         String MealPrice = documentSnapshot.getString("MealPrice");
@@ -97,12 +101,15 @@ public class CartActivity extends AppCompatActivity{
 
                         Log.d("success", MealName + ", " + MealPicture + ", " + MealPrice + ", " + quantity + ".");
 
+                        // Add item to cart list
                         cartItemsArrayList.add(new CartItem(MealName, MealPicture, MealPrice, quantity));
 
                         Log.d("Rian Rian haha", String.valueOf(cartItemsArrayList.size()));
                     }
+                    // Update cart adapter with new data
                     cartAdapter.notifyDataSetChanged();
 
+                    // Calculate and display prices (if cart is not empty)
                     if (!cartItemsArrayList.isEmpty())
                     {
                         subtotalPrice = setSubTotalPrice();
@@ -118,6 +125,7 @@ public class CartActivity extends AppCompatActivity{
                 }
 
             })
+                    // Handle if cart fails to fetch item, which it won't :)
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
@@ -125,6 +133,7 @@ public class CartActivity extends AppCompatActivity{
                         }
                     });
         }
+        // User is not signed in, prompt them to sign in
         else
         {
             Toast.makeText(getApplicationContext(), "Not Signed In bro", Toast.LENGTH_SHORT).show();
@@ -134,7 +143,7 @@ public class CartActivity extends AppCompatActivity{
 
 
 
-
+        // Set up recycler view
         cartBackArrow = findViewById(R.id.cartBackArrowhi);
 
         cartRecyclerView = findViewById(R.id.cartRecyclerView); // Replace with your RecyclerView ID
@@ -142,7 +151,7 @@ public class CartActivity extends AppCompatActivity{
         cartRecyclerView.setLayoutManager(layoutManager);
 
         cartAdapter = new CartAdapter(cartItemsArrayList, CartActivity.this);
-        //Log.d("Rian Rian", "cartItems size: " + cartItemsArrayList.size());
+
         cartRecyclerView.setAdapter(cartAdapter);
 
 
@@ -166,13 +175,15 @@ public class CartActivity extends AppCompatActivity{
                 public void onClick(View view) {
                     if (user != null) {
                         CollectionReference cartRef = fireStore.collection("MealUsers").document(user.getUid()).collection("MealStoring");
+                        // Fetches a collection, just a database
 
                         cartRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                                for (int i = 0; i < queryDocumentSnapshots.size(); i++) { //line 177
+                                for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
                                     DocumentSnapshot documentSnapshot = queryDocumentSnapshots.getDocuments().get(i);
+                                    //Fetches specific database
                                     String mealName = documentSnapshot.getString("MealName");
 
                                     fireStore.collection("MealUsers").document(user.getUid()).collection("MealStoring").document(mealName)
@@ -193,8 +204,12 @@ public class CartActivity extends AppCompatActivity{
                                 }
                                 Toast.makeText(getApplicationContext(), "Successfully Ordered!", Toast.LENGTH_LONG).show();
 
+                                // Start MealCompletionScreen with cart details
                                 Intent intent = new Intent(getApplicationContext(), MealCompetionScreen.class);
                                 intent.putParcelableArrayListExtra("CartItemList", cartItemsArrayList);
+                                intent.putExtra("TotalPrice", totalPrice);
+                                intent.putExtra("SubTotal", subtotalPrice);
+                                intent.putExtra("TotalTax", taxSubTotal);
                                 startActivity(intent);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -213,16 +228,19 @@ public class CartActivity extends AppCompatActivity{
         }
     }
 
+    // Listener interface for cart item quantity changes
     public interface CartItemQuantityListener
     {
         void onCartItemQuantityListener(int position, int newQuantity);
     }
 
+    // Update prices when item quantity is decreased
     public void onCartItemQuantityChangeMinus(int position, int newQuantity)
     {
         updatePriceandSummary2(position, newQuantity);
     }
 
+    // Update prices and summary for decrease in quantity
     private void updatePriceandSummary2(int position, int newQuantity)
     {
         for (CartItem item : cartItemsArrayList)
@@ -249,12 +267,13 @@ public class CartActivity extends AppCompatActivity{
     }
 
 
-
+    // Update prices when item quantity is increased
     public void onCartItemQuantityChange(int position, int newQuantity)
     {
         updatePriceandSummary(position, newQuantity);
     }
 
+    // Update prices and summary for increase in quantity
     private void updatePriceandSummary(int position, int newQuantity)
     {
         for (CartItem item : cartItemsArrayList)
@@ -273,6 +292,7 @@ public class CartActivity extends AppCompatActivity{
         SubTotal.setText("$" + String.format("%.2f", subTotal));
     }
 
+    // Calculate tax amount based on subtotal
     private double setTaxPrice(double SubTotal)
     {
         double tax = 0.0725;
@@ -280,6 +300,7 @@ public class CartActivity extends AppCompatActivity{
         return SubTotaltax;
     }
 
+    // Calculate subtotal price
     private double setSubTotalPrice()
     {
         double total = 0.0;
@@ -292,29 +313,4 @@ public class CartActivity extends AppCompatActivity{
         }
         return total;
     }
-
-    /*public void removeItem(int position)
-    {
-        fireStore = FirebaseFirestore.getInstance();
-        auth = FirebaseAuth.getInstance();
-        user = FirebaseAuth.getInstance().getCurrentUser();
-
-        DocumentReference documentReference = fireStore.collection("MealUsers").document(user.getUid()).collection("MealStoring").document(cartItemsArrayList.get(position).getMealName());
-
-        documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(getApplicationContext(), "Successfully deleted.", Toast.LENGTH_SHORT).show();
-                cartItemsArrayList.remove(position);
-                cartAdapter.notifyItemRemoved(position);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Successfully deleted.", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
-        startActivity(intent);*/
 }

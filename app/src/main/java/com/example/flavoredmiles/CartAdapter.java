@@ -170,36 +170,23 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 removeItem(position);
             }
         });
-
-
-
-        // Set the image if you included it in CartItem (optional)
     }
 
     public int getItemCount() {
         return cartItems.size();
     }
 
-    /*public int getPrice()
-    {
-        double subTotal;
-        double Total;
-    }*/
-
+    // Removes item from the Firebase Database
     public void removeItem(int bubi)
     {
         fireStore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        Log.d("bubi", "" + bubi);
-        Log.d("bubi bubi", "" + cartItems.size());
-
-
-        //((CartActivity) activity).totalPrice -= bubi;
-
+        // Gets data from a specific database
         DocumentReference documentReference = fireStore.collection("MealUsers").document(user.getUid()).collection("MealStoring").document(cartItems.get(bubi).getMealName());
 
+        //Deletes the data from that specific database, then displays a Toast msg
         documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
@@ -212,9 +199,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         });
 
-        //cartItems.remove(bubi);
-        //notifyItemRemoved(bubi);
-
+        // Reopens the activity after deletion as the changes will go through and change the recyclerview
         Intent intent = new Intent(activity.getApplicationContext(), CartActivity.class);
         activity.startActivity(intent);
     }

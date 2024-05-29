@@ -383,7 +383,7 @@ public class CreateAccount extends AppCompatActivity {
                                     startActivity(intent);
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(getApplicationContext(), "Authentication failed, may be an issue with an issue with an unauthorized email or password", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Unauthorized email (must have @)", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -393,29 +393,4 @@ public class CreateAccount extends AppCompatActivity {
         });
 
     }
-
-    /*private void addUser(String email, String day, String month, String year, String firstName, String lastName) {
-        // Logic to add user to firestore
-        Map<String, Object> MealUser = new HashMap<>();
-        MealUser.put("email", email);
-        MealUser.put("day", day);
-        MealUser.put("month", month);
-        MealUser.put("year", year);
-        MealUser.put("firstName", firstName);
-        MealUser.put("lastName", lastName);
-
-        FirebaseFirestore.collection("users").document("LhYiGh1knaf7zGrSmGEQ").set(MealUser)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "DocumentSnapshot added with ID: ");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener<Exception>() {
-                    @Override
-                    public void onFailure(Exception e) {
-                        Log.w("TAG", "Error adding document", e);
-                    }
-                });
-    }*/
 }

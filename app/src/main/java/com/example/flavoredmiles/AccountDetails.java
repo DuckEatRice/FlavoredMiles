@@ -81,6 +81,9 @@ public class AccountDetails extends AppCompatActivity {
             }
         });
 
+        /**
+         * If clicked on, then will sign out of FireBase and Intent back to LogInScreen
+         */
         signoutIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,6 +94,9 @@ public class AccountDetails extends AppCompatActivity {
             }
         });
 
+        /**
+         * If clicked on, then will sign out of FireBase and Intent back to LogInScreen
+         */
         signoutView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,6 +107,9 @@ public class AccountDetails extends AppCompatActivity {
             }
         });
 
+        /**
+         * If clicked on, then will sign out of FireBase and Intent back to LogInScreen
+         */
         accSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -155,7 +155,7 @@
         android:id="@+id/cartBackArrowhi"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginStart="368dp"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -7,11 +7,11 @@ import androidx.annotation.NonNull;
 
 public class CartItem implements Parcelable {
 
+    //Strings for CartItem
     String mealName;
     String imageName;
     String mealPrice;
     String quantity;
-
     public CartItem(String mealName, String imageName, String mealPrice, String quantity) {
         this.mealName = mealName;
         this.imageName = imageName;
@@ -20,6 +20,7 @@ public class CartItem implements Parcelable {
     }
 
 
+    //A required method for parcing, which basically just allows ParceableArrayLists to be intented
     protected CartItem(Parcel in) {
         mealName = in.readString();
         imageName = in.readString();
@@ -27,6 +28,7 @@ public class CartItem implements Parcelable {
         quantity = in.readString();
     }
 
+    //A required method for parcing, which basically just allows ParceableArrayLists to be intented
     public static final Creator<CartItem> CREATOR = new Creator<CartItem>() {
         @Override
         public CartItem createFromParcel(Parcel in) {

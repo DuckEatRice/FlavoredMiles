@@ -60,9 +60,8 @@ public class MealCompletionAdapter extends RecyclerView.Adapter<MealCompletionAd
             holder.mealPicture.setImageResource(R.drawable.imagenotfound);
         }
 
+        // Sets mealName textView as the MealName
         holder.mealName.setText(cartItems.get(position).getMealName());
-
-        Log.wtf("Bubi Bubi", String.valueOf(cartItems.size()));
     }
 
     @Override

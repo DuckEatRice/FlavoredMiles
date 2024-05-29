@@ -200,9 +200,10 @@ public class MealDetails extends AppCompatActivity {
                     Map<String, Object> Meals = new HashMap<>();
                     Meals.put("MealName", MealName);
                     Meals.put("MealPicture", MealPicture);
-                    Meals.put("MealPrice", result);
+                    Meals.put("MealPrice", MealPrice);
                     Meals.put("quantity", quantityNumber);
 
+                    // Sets hashmap into DocumentReference, which is just a database
                     documentReference.set(Meals).addOnSuccessListener(new OnSuccessListener<Void>()
                     {
                         @Override

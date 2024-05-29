@@ -4,6 +4,8 @@ import android.graphics.drawable.Drawable;
 import android.provider.Telephony;
 
 public class JSONFile {
+
+    //Required strings for ArrayList using RecyclerView
     String MealName;
     String MealPicturePath;
     String MealDescription;
@@ -14,6 +16,7 @@ public class JSONFile {
     String Calories;
     String Ingredients;
 
+    //Constructor for required strings
     public JSONFile(String mealName, String mealPicture, String mealDescription, String mealType, String rating, String price, String time, String calories, String ingredients) {
         MealName = mealName;
         MealPicturePath = mealPicture;
@@ -25,6 +28,8 @@ public class JSONFile {
         Calories = calories;
         Ingredients = ingredients;
     }
+
+    //All the methods for the strings
 
     public String getMealName() {
         return MealName;
@@ -60,41 +65,5 @@ public class JSONFile {
 
     public String getIngredients() {
         return Ingredients;
-    }
-
-    public void setMealName(String mealName) {
-        MealName = mealName;
-    }
-
-    public void setMealPicture(String mealPicture) {
-        MealPicturePath = mealPicture;
-    }
-
-    public void setMealDescription(String mealDescription) {
-        MealDescription = mealDescription;
-    }
-
-    public void setMealType(String mealType) {
-        MealType = mealType;
-    }
-
-    public void setRating(String rating) {
-        Rating = rating;
-    }
-
-    public void setPrice(String price) {
-        Price = price;
-    }
-
-    public void setTime(String time) {
-        Time = time;
-    }
-
-    public void setCalories(String calories) {
-        Calories = calories;
-    }
-
-    public void setIngredients(String ingredients) {
-        Ingredients = ingredients;
     }
 }

@@ -55,6 +55,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodVi
 
     public class FoodViewHolder extends RecyclerView.ViewHolder
     {
+        // RecyclerAdapters' CardViews' TextViews
         private TextView name;
         private TextView time;
         private TextView price;
@@ -112,20 +113,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodVi
             holder.foodView.setImageResource(R.drawable.imagenotfound);
         }
 
+        // If clicked on then adds to Firebase Database
         holder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                ArrayList<CartItem> cartItems = new ArrayList<>();
-                /*String quantityNumber = String.valueOf(quantity[0]);
-                CartItem cartItem = new CartItem(MealName, MealPicture, MealPrice, quantityNumber);
-                cartItems.add(cartItem);
-
-                Intent intent1 = new Intent(getApplicationContext(), CartActivity.class);
-                intent1.putParcelableArrayListExtra("cartList", cartItems); //issue
-                startActivity(intent1);
-
-                Toast.makeText(getApplicationContext(), "Added to cart!", Toast.LENGTH_SHORT).show();*/
 
                 if (user != null)
                 {
@@ -141,6 +132,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FoodVi
                     Meals.put("MealPrice", javaList.get(position).getPrice());
                     Meals.put("quantity", "1");
 
+                    // Puts information from HashMap into Document, aka a database
                     documentReference.set(Meals).addOnSuccessListener(new OnSuccessListener<Void>()
                     {
                         @Override

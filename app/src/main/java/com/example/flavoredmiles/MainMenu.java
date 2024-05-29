@@ -238,29 +238,10 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
-
-        /*if (user == null)
-        {
-            Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
-            startActivity(intent);
-            finish();
-        }
-        else
-        {
-            //sample.setText(user.getEmail());
-        }*/
-
-        /*sampleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), LogInScreen.class);
-                startActivity(intent);
-                finish();
-            }
-        });*/
-
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+        //Settings up RecyclerView and Adapter
 
         String temp = loadJSONFromAsset();
 
@@ -270,8 +251,11 @@ public class MainMenu extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         recyclerAdapter = new RecyclerAdapter(this, FoodsList, MainMenu.this, fStore, user, auth) ;
-        //Log.d("Rian Rian", "FoodsList size: " + FoodsList.size());
+
         recyclerView.setAdapter(recyclerAdapter);
+
+
+        //Try catch to test for errors
 
         try{
             JSONArray obj = new JSONArray(temp);
@@ -282,22 +266,9 @@ public class MainMenu extends AppCompatActivity {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
-        /*for(JSONFile foodList : FoodsList)
-        {
-            System.out.println("MealName" + foodList.getMealName());
-            System.out.println("MealPicture" + foodList.getMealPicture());
-            System.out.println("MealDescription" + foodList.getMealDescription());
-            System.out.println("MealType" + foodList.getMealType());
-            System.out.println("MealPrice" + foodList.getPrice());
-            System.out.println("MealRating" + foodList.getRating());
-            System.out.println("MealTime" + foodList.getTime());
-            System.out.println("MealCalories" + foodList.getCalories());
-            System.out.println("MealIngredients" + foodList.getIngredients());
-        }*/
-
     }
 
+    // Gets info from Json File
     private void setupJSONArray(JSONArray obj) throws JSONException
     {
 
@@ -322,6 +293,7 @@ public class MainMenu extends AppCompatActivity {
 
     }
 
+    //Loads json file
     public String loadJSONFromAsset()
     {
         String json = null;
